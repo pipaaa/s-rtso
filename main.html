@@ -3,16 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deportes en directo</title>
+    <title>PV Football - Deportes en Directo</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="main.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
-    <h1>Deportes en directo</h1>
-    <div class="iframe-container">
-        <iframe src="URL_DEL_GENIALLY" frameborder="0"></iframe>
-        <iframe id="videoPlayer" src="URL_DEL_VIDEO" allow="autoplay" frameborder="0"></iframe>
-        <button onclick="reloadVideo()">Recargar</button>
+    <header>
+        <button id="logout" onclick="logout()">Cerrar sesión</button>
+        <button id="membership" onclick="showMembership()">Mi membresía</button>
+    </header>
+    
+    <div id="welcome-message">
+        <p id="welcome-text"></p>
+        <p id="membership-status"></p>
+        <a href="https://play-view.netlify.app/membresia.html" id="renew-link">Renovar membresía</a>
+        <span id="close-message" onclick="closeMessage()">✖</span>
     </div>
+    
+    <h1 id="title">Deportes en Directo</h1>
+    
+    <div class="iframe-container">
+        <iframe id="genially-frame" src="URL_DEL_GENIALLY" frameborder="0" allowfullscreen></iframe>
+    </div>
+    
+    <div class="iframe-container">
+        <iframe id="video-frame" src="URL_DEL_VIDEO" frameborder="0" allowfullscreen sandbox="allow-same-origin allow-scripts"></iframe>
+        <button id="reload-video" onclick="reloadVideo()">Recargar</button>
+    </div>
+    
 </body>
 </html>
+

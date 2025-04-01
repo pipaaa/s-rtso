@@ -3,36 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PV Football - Deportes en Directo</title>
+    <title>PV Football</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
-    <link rel="icon" type="image/png" href="favicon.png">
 </head>
-<body>
-    <header>
-        <button id="logout" onclick="logout()">Cerrar sesión</button>
-        <button id="membership" onclick="showMembership()">Mi membresía</button>
-    </header>
-    
-    <div id="welcome-message">
-        <p id="welcome-text"></p>
-        <p id="membership-status"></p>
-        <a href="https://play-view.netlify.app/membresia.html" id="renew-link">Renovar membresía</a>
-        <span id="close-message" onclick="closeMessage()">✖</span>
+<body onload="displayWelcomeMessage()">
+    <div class="main-container">
+        <h1 id="welcome-message">Bienvenido a Play View</h1>
+        <p id="membership-info"></p>
+        
+        <!-- Botón de renovar membresía -->
+        <button id="renew-membership-btn" style="display:none" onclick="renewMembership()">Renovar membresía</button>
+        
+        <!-- Botón de cerrar sesión -->
+        <button onclick="logout()">Cerrar sesión</button>
+
+        <hr>
+
+        <!-- Aquí van los iframes para el contenido -->
+        <h2>Deportes en directo</h2>
+        <div class="iframe-container">
+            <iframe src="https://example.com" width="100%" height="400px"></iframe>
+            <iframe src="https://example.com" width="100%" height="400px"></iframe>
+        </div>
+
+        <button class="reload-btn" onclick="reloadIframe()">Recargar</button>
     </div>
-    
-    <h1 id="title">Deportes en Directo</h1>
-    
-    <div class="iframe-container">
-        <iframe id="genially-frame" src="URL_DEL_GENIALLY" frameborder="0" allowfullscreen></iframe>
-    </div>
-    
-    <div class="iframe-container">
-        <iframe id="video-frame" src="URL_DEL_VIDEO" frameborder="0" allowfullscreen sandbox="allow-same-origin allow-scripts"></iframe>
-        <button id="reload-video" onclick="reloadVideo()">Recargar</button>
-    </div>
-    
 </body>
 </html>
-
-

@@ -1,67 +1,85 @@
-// Función para manejar el login
+// Variables globales
+const correctCredentials = [
+    { username: 'not4dmin', password: 'false4' },
+    { username: 'Txiki', password: 'baltza2025' }
+];
+let failedAttempts = 0;
+let membershipDays = 10; // Número de días para la demo
+const usernameDisplay = document.getElementById('username-display');
+const membershipInfo = document.getElementById('membership-info');
+
+// Función para verificar el login
 function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const errorMessage = document.getElementById('error-message');
 
-    const validCredentials = [
-        { username: "not4dmin", password: "false4" },
-        { username: "Txiki", password: "baltza2025" }
-    ];
-
-    const user = validCredentials.find(user => user.username === username && user.password === password);
-
+    // Verificar credenciales
+    const user = correctCredentials.find(cred => cred.username === username && cred.password === password);
+    
     if (user) {
-        // Almacenamos el nombre de usuario y la fecha de expiración de la membresía
-        localStorage.setItem("username", username);
-        let membershipExpiry = localStorage.getItem("membershipExpiry");
-        if (!membershipExpiry) {
-            membershipExpiry = new Date();
-            membershipExpiry.setDate(membershipExpiry.getDate() + 10); // 10 días
-            localStorage.setItem("membershipExpiry", membershipExpiry);
-        }
-
-        // Redirigir a main.html
-        window.location.href = "main.html";
+        // Si las credenciales son correctas
+        localStorage.setItem('loggedIn', true);
+        localStorage.setItem('username', username);
+        failedAttempts = 0; // Resetear intentos fallidos
+        window.location.href = 'main.html'; // Redirigir a la página principal
     } else {
-        loginAttempts++;
-        if (loginAttempts >= 5) {
-            const lockTime = new Date().getTime() + 3600000; // Bloqueo por 1 hora
-            localStorage.setItem("lockTime", lockTime);
-            alert("Demasiados intentos fallidos. Inténtalo de nuevo en 1 hora.");
+        // Si las credenciales son incorrectas
+        failedAttempts++;
+        if (failedAttempts >= 5) {
+            errorMessage.textContent = 'Demasiados intentos fallidos. Por favor, espera una hora para intentar de nuevo.';
+            setTimeout(() => {
+                failedAttempts = 0;
+                errorMessage.textContent = '';
+            }, 3600000); // Bloqueo de 1 hora
         } else {
-            document.getElementById("error-message").innerText = "Usuario o contraseña incorrectos.";
+            errorMessage.textContent = 'Credenciales incorrectas. Intentos restantes: ' + (5 - failedAttempts);
         }
     }
 }
 
-// Función para mostrar el mensaje de bienvenida y la información de la membresía en main.html
-function displayWelcomeMessage() {
-    const username = localStorage.getItem("username");
-    const membershipExpiry = new Date(localStorage.getItem("membershipExpiry"));
-    const today = new Date();
-    const daysRemaining = Math.ceil((membershipExpiry - today) / (1000 * 3600 * 24));
+// Comprobar si el usuario está logueado
+document.addEventListener('DOMContentLoaded', () => {
+    if (!localStorage.getItem('loggedIn')) {
+        window.location.href = 'index.html'; // Redirigir a la página de login si no está logueado
+    } else {
+        // Mostrar el nombre de usuario y los días restantes de membresía
+        const username = localStorage.getItem('username');
+        usernameDisplay.textContent = username;
+        membershipInfo.textContent = `Días restantes de servicio: ${membershipDays} (demo)`;
 
-    if (username) {
-        document.getElementById("welcome-message").innerText = `Bienvenido a Play View, ${username}!`;
-        document.getElementById("membership-info").innerText = `Días restantes de servicio: ${daysRemaining} días (demo)`;
+        // Bloquear las credenciales después de 10 días (1 de abril de 2025)
+        const currentDate = new Date();
+        const expirationDate = new Date('2025-04-10'); // Fecha de expiración
 
-        if (daysRemaining <= 0) {
-            document.getElementById("membership-info").innerText = "Tu membresía ha expirado. Por favor, renueva tu membresía.";
-            document.getElementById("renew-membership-btn").style.display = "inline-block";
-        } else {
-            document.getElementById("renew-membership-btn").style.display = "none";
+        if (currentDate >= expirationDate) {
+            localStorage.removeItem('loggedIn');
+            alert('Tu membresía ha expirado. Por favor, renueva.');
+            window.location.href = 'index.html'; // Redirigir a login si la membresía ha expirado
         }
     }
-}
-
-// Función para redirigir al usuario a la página de renovación de membresía
-function renewMembership() {
-    window.location.href = "https://play-view.netlify.app/membresia.html";
-}
+});
 
 // Función para cerrar sesión
 function logout() {
-    localStorage.removeItem("username");
-    localStorage.removeItem("membershipExpiry");
-    window.location.href = "index.html";
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('username');
+    window.location.href = 'index.html'; // Redirigir a la página de login
+}
+
+// Función para recargar el iframe 2
+function reloadIframe() {
+    const iframe2 = document.getElementById('iframe2');
+    iframe2.src = iframe2.src;
+}
+
+// Función para mostrar información de la membresía
+function showMembershipInfo() {
+    alert(`Tu membresía es de prueba. Días restantes: ${membershipDays}`);
+}
+
+// Función para cerrar el mensaje de bienvenida
+function closeMessage() {
+    const message = document.getElementById('welcome-message');
+    message.style.display = 'none';
 }

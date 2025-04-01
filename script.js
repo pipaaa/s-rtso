@@ -22,7 +22,7 @@ function login() {
     
     if (users[username] === password) {
         sessionStorage.setItem("user", username);
-        window.location.href = "main.html";
+        window.location.href = "main.html";  // Asegurándonos de que redirige correctamente.
     } else {
         trackFailedAttempts(username);
     }
@@ -46,7 +46,7 @@ function showError(msg) {
 
 function logout() {
     sessionStorage.removeItem("user");
-    window.location.href = "index.html";
+    window.location.href = "index.html";  // Redirige a la página de inicio de sesión
 }
 
 function showMembership() {
@@ -64,13 +64,13 @@ function closeMessage() {
 }
 
 function reloadVideo() {
-    document.getElementById("video-frame").src += '';
+    document.getElementById("video-frame").src += '';  // Recarga solo el segundo iframe
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     let user = sessionStorage.getItem("user");
     if (!user) {
-        window.location.href = "index.html";
+        window.location.href = "index.html";  // Verifica si no hay usuario y redirige a login
     } else {
         document.getElementById("welcome-text").textContent = "Bienvenido a Play View, " + user + "!";
         document.getElementById("membership-status").textContent = "Días restantes de servicio - " + getRemainingDays() + " días (demo)";

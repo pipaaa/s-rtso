@@ -1,83 +1,83 @@
-body {
-    font-family: Arial, sans-serif;
-    background: url('footballon.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    text-align: center;
+const users = {
+    "not4dmin": "false4",
+    "Txiki": "baltza2025"
+};
+
+const blockedUsers = {};
+const demoExpiration = new Date("2025-04-11").getTime();
+
+function login() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    
+    if (!username || !password) {
+        showError("Usuario y contraseña requeridos");
+        return;
+    }
+    
+    if (blockedUsers[username] && Date.now() < blockedUsers[username]) {
+        showError("Usuario bloqueado temporalmente");
+        return;
+    }
+    
+    if (users[username] === password) {
+        sessionStorage.setItem("user", username);
+        window.location.href = "main.html";  // Asegurándonos de que redirige correctamente.
+    } else {
+        trackFailedAttempts(username);
+    }
 }
 
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+function trackFailedAttempts(username) {
+    if (!blockedUsers[username]) blockedUsers[username] = 0;
+    blockedUsers[username]++;
+    
+    if (blockedUsers[username] >= 5) {
+        blockedUsers[username] = Date.now() + 3600000;
+        showError("Cuenta bloqueada por 1 hora");
+    } else {
+        showError("Credenciales incorrectas");
+    }
 }
 
-.login-box {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+function showError(msg) {
+    document.getElementById("error-message").textContent = msg;
 }
 
-input, button {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
+function logout() {
+    sessionStorage.removeItem("user");
+    window.location.href = "index.html";  // Redirige a la página de inicio de sesión
 }
 
-button {
-    background-color: #ff4500;
-    color: white;
-    border: none;
-    cursor: pointer;
+function showMembership() {
+    alert("Días restantes de servicio: " + getRemainingDays() + " días");
 }
 
-button:hover {
-    background-color: #e03e00;
+function getRemainingDays() {
+    let now = Date.now();
+    let remaining = Math.ceil((demoExpiration - now) / (1000 * 60 * 60 * 24));
+    return remaining > 0 ? remaining : 0;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.8);
+function closeMessage() {
+    document.getElementById("welcome-message").style.display = "none";
 }
 
-h1 {
-    text-shadow: 2px 2px 4px black;
-    font-size: 2em;
-    margin: 20px 0;
+function reloadVideo() {
+    document.getElementById("video-frame").src += '';  // Recarga solo el segundo iframe
 }
 
-#iframe-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+document.addEventListener("DOMContentLoaded", function() {
+    let user = sessionStorage.getItem("user");
+    if (!user) {
+        window.location.href = "index.html";  // Verifica si no hay usuario y redirige a login
+    } else {
+        document.getElementById("welcome-text").textContent = "Bienvenido a Play View, " + user + "!";
+        document.getElementById("membership-status").textContent = "Días restantes de servicio - " + getRemainingDays() + " días (demo)";
+    }
 
-iframe {
-    width: 90%;
-    height: 400px;
-    margin: 10px 0;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-}
-
-#reload-video {
-    width: 150px;
-    margin-top: 10px;
-    background-color: #ff4500;
-}
-
-footer {
-    background: black;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
+    if (getRemainingDays() <= 0) {
+        alert("Tu membresía ha expirado. Redirigiendo...");
+        logout();
+    }
+});

@@ -3,31 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PV Football</title>
+    <title>Deportes en directo - PV Football</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.png">
     <script defer src="script.js"></script>
 </head>
-<body onload="displayWelcomeMessage()">
+<body>
     <div class="main-container">
-        <h1 id="welcome-message">Bienvenido a Play View</h1>
-        <p id="membership-info"></p>
+        <h1>Deportes en directo</h1>
+        <div id="welcome-message">
+            <p>Bienvenido a Play View, <span id="username-display"></span>!</p>
+            <p id="membership-info">Días restantes de servicio: <span id="membership-days">10</span> (demo)</p>
+            <p><button id="renew-membership-btn" onclick="window.location.href = 'https://play-view.netlify.app/membresia.html'">Renueva tu membresía</button></p>
+            <button id="close-message-btn" onclick="closeMessage()">Cerrar</button>
+        </div>
         
-        <!-- Botón de renovar membresía -->
-        <button id="renew-membership-btn" style="display:none" onclick="renewMembership()">Renovar membresía</button>
-        
-        <!-- Botón de cerrar sesión -->
-        <button onclick="logout()">Cerrar sesión</button>
-
-        <hr>
-
-        <!-- Aquí van los iframes para el contenido -->
-        <h2>Deportes en directo</h2>
         <div class="iframe-container">
-            <iframe src="https://example.com" width="100%" height="400px"></iframe>
-            <iframe src="https://example.com" width="100%" height="400px"></iframe>
+            <iframe src="URL_DEL_GENIALLY_1" title="Deportes en Directo 1"></iframe>
+        </div>
+        
+        <div class="iframe-container">
+            <iframe id="iframe2" src="URL_DEL_REPRODUCTOR_VIDEO" title="Reproductor en Directo"></iframe>
+            <button class="reload-btn" onclick="reloadIframe()">Recargar</button>
         </div>
 
-        <button class="reload-btn" onclick="reloadIframe()">Recargar</button>
+        <div>
+            <button onclick="logout()">Cerrar sesión</button>
+            <button onclick="showMembershipInfo()">Mi membresía</button>
+        </div>
     </div>
 </body>
 </html>

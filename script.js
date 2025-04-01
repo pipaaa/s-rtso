@@ -3,45 +3,81 @@ const users = {
     "Txiki": "baltza2025"
 };
 
-let attempts = localStorage.getItem("loginAttempts") || 0;
-let lockedUntil = localStorage.getItem("lockedUntil");
-
-if (lockedUntil && new Date().getTime() < lockedUntil) {
-    document.body.innerHTML = "<h2 style='color:white;text-align:center;'>Bloqueado. Intenta más tarde.</h2>";
-} 
+const blockedUsers = {};
+const demoExpiration = new Date("2025-04-11").getTime();
 
 function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const errorMessage = document.getElementById("error-message");
-
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    
     if (!username || !password) {
-        errorMessage.innerText = "Por favor, completa todos los campos.";
+        showError("Usuario y contraseña requeridos");
         return;
     }
-
-    if (users[username] && users[username] === password) {
-        localStorage.removeItem("loginAttempts");
-        localStorage.removeItem("lockedUntil");
+    
+    if (blockedUsers[username] && Date.now() < blockedUsers[username]) {
+        showError("Usuario bloqueado temporalmente");
+        return;
+    }
+    
+    if (users[username] === password) {
+        sessionStorage.setItem("user", username);
         window.location.href = "main.html";
     } else {
-        attempts++;
-        localStorage.setItem("loginAttempts", attempts);
-
-        if (attempts >= 5) {
-            let lockTime = new Date().getTime() + 60 * 60 * 1000;
-            localStorage.setItem("lockedUntil", lockTime);
-            document.body.innerHTML = "<h2 style='color:white;text-align:center;'>Demasiados intentos fallidos. Intenta más tarde.</h2>";
-        } else {
-            errorMessage.innerText = `Credenciales incorrectas. Intentos restantes: ${5 - attempts}`;
-        }
+        trackFailedAttempts(username);
     }
 }
 
-// Bloquear Inspeccionar
-document.addEventListener("keydown", (event) => {
-    if (event.key === "F12" || (event.ctrlKey && event.shiftKey && event.key === "I")) {
-        event.preventDefault();
+function trackFailedAttempts(username) {
+    if (!blockedUsers[username]) blockedUsers[username] = 0;
+    blockedUsers[username]++;
+    
+    if (blockedUsers[username] >= 5) {
+        blockedUsers[username] = Date.now() + 3600000;
+        showError("Cuenta bloqueada por 1 hora");
+    } else {
+        showError("Credenciales incorrectas");
+    }
+}
+
+function showError(msg) {
+    document.getElementById("error-message").textContent = msg;
+}
+
+function logout() {
+    sessionStorage.removeItem("user");
+    window.location.href = "index.html";
+}
+
+function showMembership() {
+    alert("Días restantes de servicio: " + getRemainingDays() + " días");
+}
+
+function getRemainingDays() {
+    let now = Date.now();
+    let remaining = Math.ceil((demoExpiration - now) / (1000 * 60 * 60 * 24));
+    return remaining > 0 ? remaining : 0;
+}
+
+function closeMessage() {
+    document.getElementById("welcome-message").style.display = "none";
+}
+
+function reloadVideo() {
+    document.getElementById("video-frame").src += '';
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    let user = sessionStorage.getItem("user");
+    if (!user) {
+        window.location.href = "index.html";
+    } else {
+        document.getElementById("welcome-text").textContent = "Bienvenido a Play View, " + user + "!";
+        document.getElementById("membership-status").textContent = "Días restantes de servicio - " + getRemainingDays() + " días (demo)";
+    }
+
+    if (getRemainingDays() <= 0) {
+        alert("Tu membresía ha expirado. Redirigiendo...");
+        logout();
     }
 });
-document.addEventListener("contextmenu", (event) => event.preventDefault());

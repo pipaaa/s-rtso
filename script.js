@@ -1,83 +1,56 @@
-const users = {
-    "not4dmin": "false4",
-    "Txiki": "baltza2025"
+// Variable para el contador de intentos de login
+let loginAttempts = 0;
+
+// Función para manejar el login
+function login(event) {
+    // Evitar la recarga automática de la página
+    event.preventDefault();
+
+    // Obtener los valores de los campos de entrada
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // Definir las credenciales correctas
+    const validCredentials = [
+        { username: "not4dmin", password: "false4" },
+        { username: "Txiki", password: "baltza2025" }
+    ];
+
+    // Verificar si las credenciales son correctas
+    const user = validCredentials.find(user => user.username === username && user.password === password);
+
+    if (user) {
+        // Si las credenciales son correctas, redirigir a main.html
+        window.location.href = "main.html";
+    } else {
+        // Si las credenciales son incorrectas, incrementar el contador de intentos
+        loginAttempts++;
+
+        // Si se han superado los 5 intentos, bloquear por 1 hora
+        if (loginAttempts >= 5) {
+            // Bloquear acceso durante 1 hora
+            const lockTime = new Date().getTime() + 3600000; // 1 hora en milisegundos
+            localStorage.setItem("lockTime", lockTime);
+            alert("Demasiados intentos fallidos. Inténtalo de nuevo en 1 hora.");
+        } else {
+            // Mostrar mensaje de error
+            document.getElementById("error-message").innerText = "Usuario o contraseña incorrectos.";
+        }
+    }
+}
+
+// Verificar si hay un bloqueo activo al cargar la página
+window.onload = function() {
+    const lockTime = localStorage.getItem("lockTime");
+    if (lockTime && new Date().getTime() < lockTime) {
+        // Si el bloqueo está activo, mostrar un mensaje de error
+        document.getElementById("error-message").innerText = "Estás bloqueado por demasiados intentos fallidos. Inténtalo de nuevo más tarde.";
+        // Deshabilitar los campos de entrada
+        document.getElementById("username").disabled = true;
+        document.getElementById("password").disabled = true;
+        document.querySelector("button").disabled = true;
+    } else {
+        // Si el bloqueo ha pasado, permitir el login
+        localStorage.removeItem("lockTime");
+    }
 };
-
-const blockedUsers = {};
-const demoExpiration = new Date("2025-04-11").getTime();
-
-function login() {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
-    
-    if (!username || !password) {
-        showError("Usuario y contraseña requeridos");
-        return;
-    }
-    
-    if (blockedUsers[username] && Date.now() < blockedUsers[username]) {
-        showError("Usuario bloqueado temporalmente");
-        return;
-    }
-    
-    if (users[username] === password) {
-        sessionStorage.setItem("user", username);
-        window.location.href = "main.html";  // Asegurándonos de que redirige correctamente.
-    } else {
-        trackFailedAttempts(username);
-    }
-}
-
-function trackFailedAttempts(username) {
-    if (!blockedUsers[username]) blockedUsers[username] = 0;
-    blockedUsers[username]++;
-    
-    if (blockedUsers[username] >= 5) {
-        blockedUsers[username] = Date.now() + 3600000;
-        showError("Cuenta bloqueada por 1 hora");
-    } else {
-        showError("Credenciales incorrectas");
-    }
-}
-
-function showError(msg) {
-    document.getElementById("error-message").textContent = msg;
-}
-
-function logout() {
-    sessionStorage.removeItem("user");
-    window.location.href = "index.html";  // Redirige a la página de inicio de sesión
-}
-
-function showMembership() {
-    alert("Días restantes de servicio: " + getRemainingDays() + " días");
-}
-
-function getRemainingDays() {
-    let now = Date.now();
-    let remaining = Math.ceil((demoExpiration - now) / (1000 * 60 * 60 * 24));
-    return remaining > 0 ? remaining : 0;
-}
-
-function closeMessage() {
-    document.getElementById("welcome-message").style.display = "none";
-}
-
-function reloadVideo() {
-    document.getElementById("video-frame").src += '';  // Recarga solo el segundo iframe
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    let user = sessionStorage.getItem("user");
-    if (!user) {
-        window.location.href = "index.html";  // Verifica si no hay usuario y redirige a login
-    } else {
-        document.getElementById("welcome-text").textContent = "Bienvenido a Play View, " + user + "!";
-        document.getElementById("membership-status").textContent = "Días restantes de servicio - " + getRemainingDays() + " días (demo)";
-    }
-
-    if (getRemainingDays() <= 0) {
-        alert("Tu membresía ha expirado. Redirigiendo...");
-        logout();
-    }
-});

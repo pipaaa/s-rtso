@@ -6,6 +6,7 @@
     <title>Play View Football 2025</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
     <div class="login-container">
@@ -17,5 +18,16 @@
             <p id="error-message"></p>
         </div>
     </div>
+    <script>
+        function adjustLayout() {
+            if (window.innerWidth <= 768) {
+                document.body.style.backgroundSize = "cover";
+            } else {
+                document.body.style.backgroundSize = "contain";
+            }
+        }
+        window.onload = adjustLayout;
+        window.onresize = adjustLayout;
+    </script>
 </body>
 </html>

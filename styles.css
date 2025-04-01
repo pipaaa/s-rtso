@@ -1,83 +1,99 @@
-const users = {
-    "not4dmin": "false4",
-    "Txiki": "baltza2025"
-};
-
-const blockedUsers = {};
-const demoExpiration = new Date("2025-04-11").getTime();
-
-function login() {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
-    
-    if (!username || !password) {
-        showError("Usuario y contraseña requeridos");
-        return;
-    }
-    
-    if (blockedUsers[username] && Date.now() < blockedUsers[username]) {
-        showError("Usuario bloqueado temporalmente");
-        return;
-    }
-    
-    if (users[username] === password) {
-        sessionStorage.setItem("user", username);
-        window.location.href = "main.html";  // Asegurándonos de que redirige correctamente.
-    } else {
-        trackFailedAttempts(username);
-    }
+/* Estilo general */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('fotofondo.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
 }
 
-function trackFailedAttempts(username) {
-    if (!blockedUsers[username]) blockedUsers[username] = 0;
-    blockedUsers[username]++;
-    
-    if (blockedUsers[username] >= 5) {
-        blockedUsers[username] = Date.now() + 3600000;
-        showError("Cuenta bloqueada por 1 hora");
-    } else {
-        showError("Credenciales incorrectas");
-    }
+/* Contenedor de login */
+.login-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-function showError(msg) {
-    document.getElementById("error-message").textContent = msg;
+.login-box {
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    max-width: 500px; /* Ajusta el tamaño máximo */
+    width: 80%; /* Ocupa el 80% del ancho disponible */
 }
 
-function logout() {
-    sessionStorage.removeItem("user");
-    window.location.href = "index.html";  // Redirige a la página de inicio de sesión
+h2 {
+    margin: 0 0 20px;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-function showMembership() {
-    alert("Días restantes de servicio: " + getRemainingDays() + " días");
+input {
+    width: 100%; /* Los inputs ocuparán el 100% del ancho disponible */
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
 }
 
-function getRemainingDays() {
-    let now = Date.now();
-    let remaining = Math.ceil((demoExpiration - now) / (1000 * 60 * 60 * 24));
-    return remaining > 0 ? remaining : 0;
+input:focus {
+    outline: none;
+    border-color: #f39c12; /* Color de borde cuando está enfocado */
 }
 
-function closeMessage() {
-    document.getElementById("welcome-message").style.display = "none";
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #f39c12; /* Color de fondo del botón */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
 }
 
-function reloadVideo() {
-    document.getElementById("video-frame").src += '';  // Recarga solo el segundo iframe
+button:hover {
+    background-color: #e67e22; /* Color al pasar el ratón */
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    let user = sessionStorage.getItem("user");
-    if (!user) {
-        window.location.href = "index.html";  // Verifica si no hay usuario y redirige a login
-    } else {
-        document.getElementById("welcome-text").textContent = "Bienvenido a Play View, " + user + "!";
-        document.getElementById("membership-status").textContent = "Días restantes de servicio - " + getRemainingDays() + " días (demo)";
-    }
+/* Mensaje de error */
+#error-message {
+    color: red;
+    font-size: 16px;
+    margin-top: 10px;
+}
 
-    if (getRemainingDays() <= 0) {
-        alert("Tu membresía ha expirado. Redirigiendo...");
-        logout();
-    }
-});
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background-color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+footer a {
+    color: #f39c12;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

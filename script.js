@@ -18,7 +18,7 @@ window.location.href = "content.html";
 } else {
 attempts++;
 if (attempts >= MAX_ATTEMPTS) {
-localStorage.setItem("lockedUntil", Date.now() + 3600000); // 1 hora
+localStorage.setItem("lockedUntil", Date.now() + 3600000);
 document.getElementById("error-message").innerText = "Demasiados intentos fallidos. Inténtalo en 1 hora.";
 } else {
 document.getElementById("error-message").innerText = "Usuario o contraseña incorrectos.";
@@ -38,8 +38,6 @@ document.getElementById("welcome-popup").style.display = "none";
 
 function checkAccess() {
 const username = localStorage.getItem("user");
-
-// Solo bloquear acceso si está intentando acceder a páginas privadas sin login
 const path = window.location.pathname;
 const isPrivatePage = path.includes("content.html") || path.includes("suscripcion.html");
 
@@ -53,10 +51,10 @@ const user = users[username];
 
 if (path.includes("content.html")) {
 const popupText = document.getElementById("welcome-text");
-
 let daysLeft = "∞";
+
 if (user.type === "demo") {
-const createdAt = user.createdAt || Date.now();
+const createdAt = parseInt(user.createdAt);
 const msLeft = 7 * 24 * 60 * 60 * 1000 - (Date.now() - createdAt);
 if (msLeft <= 0) {
 logout();
@@ -73,11 +71,12 @@ const subText = document.getElementById("subscription-info");
 let text = user.type === "admin" ? "Membresía: Ilimitada (Admin)" : "Versión DEMO";
 
 if (user.type === "demo") {
-const createdAt = user.createdAt || Date.now();
+const createdAt = parseInt(user.createdAt);
 const msLeft = 7 * 24 * 60 * 60 * 1000 - (Date.now() - createdAt);
 const daysLeft = Math.ceil(msLeft / (1000 * 60 * 60 * 24));
 text += ` - Te quedan ${daysLeft} días.`;
 }
+
 subText.innerText = text;
 }
 }
@@ -85,7 +84,6 @@ subText.innerText = text;
 
 window.onload = checkAccess;
 
-// Protección contra herramientas del navegador
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.onkeydown = function(e) {
 if (e.key === "F12" || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key)) || (e.ctrlKey && e.key === 'U')) {

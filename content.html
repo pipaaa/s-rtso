@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Contenido Privado</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <script defer src="script.js"></script>
+<meta charset="UTF-8">
+<title>Contenido - Play View Sports</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.png">
 </head>
-<body class="content-page">
-  <div class="top-bar">
-    <button onclick="logout()">Cerrar sesión</button>
-    <button onclick="window.location.href='suscripcion.html'">Mi suscripción</button>
-  </div>
+<body>
+<div class="top-bar">
+<button onclick="logout()">Cerrar sesión</button>
+<button onclick="window.location.href='suscripcion.html'">Mi suscripción</button>
+</div>
 
-  <div class="popup" id="welcome-popup">
-    <span class="close-btn" onclick="closePopup()">X</span>
-    <p id="welcome-text"></p>
-  </div>
+<div id="welcome-popup">
+<span class="close-btn" onclick="closePopup()">×</span>
+<p id="welcome-text"></p>
+</div>
 
-  <h2 class="section-title">¡En directo!</h2>
-  <div class="iframe-container small">
-    <iframe src="https://example.com/stream1"></iframe>
-  </div>
-  <div class="iframe-container large">
-    <iframe src="https://example.com/stream2"></iframe>
-  </div>
-  <p class="warning">Este contenido es privado. No se puede difundir sin autorización.</p>
+<h2 class="section-title">En directo!</h2>
+
+<iframe src="https://www.example.com" height="150"></iframe>
+<iframe src="https://www.example.com" height="540"></iframe>
+
+<div class="notice">
+Este contenido es privado. No se puede difundir sin autorización.
+</div>
+
+<script src="usuarios.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

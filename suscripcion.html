@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Mi Suscripción</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <script defer src="script.js"></script>
+<meta charset="UTF-8">
+<title>Mi suscripción</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.png">
 </head>
-<body class="suscripcion-page">
-  <div class="suscripcion-container">
-    <h1>Mi Suscripción</h1>
-    <p id="subscription-info"></p>
-    <a href="https://ejemplo.com/renovar" target="_blank">Renovar membresía</a>
-  </div>
+<body>
+<div class="top-bar">
+<button onclick="logout()">Cerrar sesión</button>
+<button onclick="window.location.href='content.html'">Volver</button>
+</div>
+
+<div class="subscription-box">
+<h2>Tu suscripción</h2>
+<p id="subscription-info"></p>
+<br>
+<a href="https://www.ejemplo.com" target="_blank" style="color:#4da8ff;">Renovar membresía</a>
+</div>
+
+<script src="usuarios.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

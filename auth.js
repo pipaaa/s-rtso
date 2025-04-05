@@ -7,6 +7,7 @@ if (!user) {
 const popup = document.getElementById("popup");
 const welcomeMessage = document.getElementById("welcomeMessage");
 const subscriptionInfo = document.getElementById("subscriptionInfo");
+const popupBackdrop = document.getElementById("popupBackdrop");
 
 // Función para obtener la fecha de expiración basada en el tipo de usuario
 function getUserExpiration(user) {
@@ -32,6 +33,9 @@ const userExpires = getUserExpiration(user);
 if (popup && welcomeMessage && subscriptionInfo) {
   popup.style.display = "block";
   
+  // Activar el difuminado de fondo
+  popupBackdrop.classList.add("active");
+
   // Mostrar mensaje de bienvenida con el nombre del usuario en negrita
   welcomeMessage.innerHTML = `Bienvenid@ a PlayView <strong>${user}</strong>!`;
 
@@ -54,12 +58,14 @@ if (popup && welcomeMessage && subscriptionInfo) {
   // Cerrar el popup automáticamente después de 4 segundos si no se cierra manualmente
   setTimeout(() => {
     popup.style.display = "none";
+    popupBackdrop.classList.remove("active"); // Desactivar el difuminado cuando se cierre el popup
   }, 4000);
 }
 
 // Función para cerrar el popup manualmente
 function closePopup() {
   popup.style.display = "none";
+  popupBackdrop.classList.remove("active"); // Desactivar el difuminado
 }
 
 // Función para cerrar sesión

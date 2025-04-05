@@ -8,7 +8,7 @@
   <link rel="icon" href="favicon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
-<body oncontextmenu="return false" onkeydown="return bloquearInspeccion(event)">
+<body oncontextmenu="return false" onkeydown="return bloquearInspeccion(event)" class="blur-target">
   <div class="header-buttons">
     <button onclick="logout()">Cerrar Sesión</button>
     <button style="margin-left: 10px;" onclick="window.location.href='subscription.html'">Mi Suscripción</button>
@@ -23,7 +23,7 @@
   <div class="content-container">
     <h2 class="title">En directo!</h2>
 
-    <div class="countdown-container">
+    <div class="countdown-container small">
       <div class="countdown-box" id="countdownRS">
         <div class="countdown-teams" id="teamsRS"></div>
         <div class="countdown-time" id="timerRS"></div>

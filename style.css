@@ -71,6 +71,7 @@ footer {
   padding: 20px;
   border-radius: 10px;
   display: none;
+  z-index: 9999; /* Asegura que el popup esté por encima del difuminado */
 }
 
 .popup .close {
@@ -186,6 +187,7 @@ body.blur {
   padding: 20px;
   border-radius: 10px;
   display: none;
+  z-index: 9999; /* Asegura que el popup esté por encima del difuminado */
 }
 
 .popup .close {

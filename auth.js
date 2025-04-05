@@ -1,10 +1,18 @@
-const currentUser = localStorage.getItem("currentUser");  // Obtenemos el usuario desde localStorage
-const users = JSON.parse(localStorage.getItem("users")) || {};  // Aseguramos que obtenemos la lista de usuarios correctamente
+const users = {
+  "Guadola": {
+    password: "baltza2025",
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 días desde ahora
+  },
+  "not4dmin": {
+    password: "4false",
+    expires: null // acceso ilimitado
+  }
+};
 
-// Si no hay un usuario o el usuario no está en la lista, redirige a index.html
+// Redirige si no hay usuario
+const currentUser = sessionStorage.getItem("user");
 if (!currentUser || !users[currentUser]) {
-  window.location.href = "index.html";  // Redirigimos a la página de login si no hay usuario
-  return;
+  window.location.href = "index.html";
 }
 
 const popup = document.getElementById("popup");
@@ -12,24 +20,29 @@ const welcomeMessage = document.getElementById("welcomeMessage");
 const subscriptionInfo = document.getElementById("subscriptionInfo");
 
 if (popup && welcomeMessage && subscriptionInfo) {
+  // Muestra el popup
   popup.style.display = "block";
-  welcomeMessage.innerHTML = `Bienvenido <strong>${currentUser}</strong> a PlayView!`;  // Mostrar nombre en negrita
+  welcomeMessage.innerHTML = `Bienvenid@ <strong>${currentUser}</strong> a PlayView!`;
 
-  // Mostrar los días restantes de membresía
-  if (users[currentUser].expires === null) {
-    subscriptionInfo.innerText = "Tienes acceso ilimitado.";  // Si el usuario tiene acceso ilimitado
-  } else {
-    const demoDaysLeft = Math.max(0, Math.ceil((users[currentUser].expires - Date.now()) / (1000 * 60 * 60 * 24)));  // Calcular días restantes
+  if (currentUser === "not4dmin") {
+    subscriptionInfo.innerText = "Tienes acceso ilimitado.";
+  } else if (currentUser === "Guadola") {
+    const demoDaysLeft = Math.max(0, Math.ceil((users["Guadola"].expires - Date.now()) / (1000 * 60 * 60 * 24)));
     subscriptionInfo.innerText = `Te quedan ${demoDaysLeft} días de membresía.`;
   }
 }
 
-// Cerrar el popup después de 4 segundos
+// Cerrar popup después de 4 segundos o manualmente
 setTimeout(() => {
-  popup.style.display = "none";
+  closePopup();
 }, 4000);
 
-// Función para cerrar el popup manualmente
 function closePopup() {
   popup.style.display = "none";
+}
+
+// Función de cierre de sesión
+function logout() {
+  sessionStorage.removeItem("user");
+  window.location.href = "index.html";
 }

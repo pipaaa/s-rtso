@@ -9,18 +9,41 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 <body oncontextmenu="return false" onkeydown="return bloquearInspeccion(event)">
-  <div class="header-buttons" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 10px 20px;">
-    <div style="color: white; font-size: 14px;">
-      <span id="welcomeText"></span>
-      <button onclick="logout()" style="margin-left: 10px;">Cerrar sesión</button>
-    </div>
-    <button onclick="window.location.href='subscription.html'">Mi suscripción</button>
+  <div class="header-buttons">
+    <button onclick="logout()">Cerrar Sesión</button>
+    <button onclick="window.location.href='subscription.html'">Mi Suscripción</button>
+  </div>
+
+  <div class="popup" id="popup">
+    <span class="close" onclick="closePopup()">×</span>
+    <div id="welcomeMessage"></div>
+    <div id="subscriptionInfo"></div>
   </div>
 
   <div class="content-container">
     <h2 class="title">En directo!</h2>
 
-    <div id="countdownContainer" class="countdown-container"></div>
+    <div class="match-countdown-container">
+      <div class="match-card" id="match-rso">
+        <img id="homeLogoRSO" class="team-logo" src="" alt="Logo local">
+        <div class="match-info">
+          <div id="teamsRSO" class="match-teams">Equipo local - Equipo visitante</div>
+          <div id="locationRSO" class="match-location">Lugar</div>
+          <div id="countdownRSO" class="match-countdown">Cargando...</div>
+        </div>
+        <img id="awayLogoRSO" class="team-logo" src="" alt="Logo visitante">
+      </div>
+
+      <div class="match-card" id="match-ath">
+        <img id="homeLogoATH" class="team-logo" src="" alt="Logo local">
+        <div class="match-info">
+          <div id="teamsATH" class="match-teams">Equipo local - Equipo visitante</div>
+          <div id="locationATH" class="match-location">Lugar</div>
+          <div id="countdownATH" class="match-countdown">Cargando...</div>
+        </div>
+        <img id="awayLogoATH" class="team-logo" src="" alt="Logo visitante">
+      </div>
+    </div>
 
     <div class="iframe-container">
       <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
@@ -34,9 +57,6 @@
   <script src="auth.js"></script>
   <script src="countdown.js"></script>
   <script>
-    const user = sessionStorage.getItem("user");
-    document.getElementById("welcomeText").innerText = `Bienvenid@ a Play View, ${user}`;
-    
     function bloquearInspeccion(e) {
       if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C"))) {
         e.preventDefault();

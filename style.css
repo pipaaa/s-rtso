@@ -120,7 +120,7 @@ footer {
   margin: 50px 0;
   color: white;
 }
-/* Fondo difuminado cuando hay popup */
+/* Fondo difuminado mientras hay popup */
 .blurred::before {
   content: "";
   position: fixed;
@@ -131,7 +131,7 @@ footer {
   animation: fadeInBlur 0.5s ease-in-out forwards;
 }
 
-/* Estilos del popup */
+/* Popup general */
 .popup {
   position: fixed;
   top: 50%;
@@ -146,9 +146,17 @@ footer {
   color: white;
   text-align: center;
   animation: popupFadeIn 0.6s ease forwards;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Animación entrada popup */
+/* Estado de salida del popup */
+.popup.fade-out {
+  opacity: 0;
+  transform: translate(-50%, -60%);
+  pointer-events: none;
+}
+
+/* Animación entrada */
 @keyframes popupFadeIn {
   from {
     opacity: 0;
@@ -172,7 +180,7 @@ footer {
   }
 }
 
-/* Botón de cerrar el popup */
+/* Botón de cerrar */
 .popup .close {
   position: absolute;
   top: 8px;
@@ -188,4 +196,3 @@ footer {
 .popup .close:hover {
   transform: scale(1.2);
 }
-

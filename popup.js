@@ -1,1 +1,0 @@
-// Lógica del popup de bienvenida

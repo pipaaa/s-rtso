@@ -15,23 +15,22 @@
     <button onclick="window.location.href='subscription.html'" class="header-btn">Mi Suscripción</button>
   </div>
 
-  <!-- POPUP bienvenida -->
+  <!-- Popup de bienvenida -->
   <div class="popup" id="popup">
     <span class="close" onclick="closePopup()">×</span>
     <div id="welcomeMessage"></div>
     <div id="subscriptionInfo"></div>
   </div>
 
-  <!-- CONTENIDO DIFUMINABLE -->
+  <!-- Contenido principal difuminable -->
   <div id="main-content">
     <div class="content-container">
       <h2 class="title">En directo!</h2>
 
-      <!-- CONTADOR DE PARTIDOS -->
+      <!-- Contadores -->
       <div class="iframe-container">
-
-        <!-- Real Sociedad -->
-        <div class="match-countdown" id="countdownRSO">
+        <!-- Contador Real Sociedad -->
+        <div class="match-countdown" id="countdownRSO" style="display: flex;">
           <img id="logoLocalRSO" class="team-logo" />
           <div class="countdown-info">
             <div id="equiposRSO" class="equipos"></div>
@@ -41,8 +40,8 @@
           <img id="logoVisitanteRSO" class="team-logo" />
         </div>
 
-        <!-- Athletic -->
-        <div class="match-countdown" id="countdownATH">
+        <!-- Contador Athletic -->
+        <div class="match-countdown" id="countdownATH" style="display: flex;">
           <img id="logoLocalATH" class="team-logo" />
           <div class="countdown-info">
             <div id="equiposATH" class="equipos"></div>
@@ -52,17 +51,18 @@
           <img id="logoVisitanteATH" class="team-logo" />
         </div>
 
-        <!-- Segundo iframe -->
+        <!-- Iframe de contenido -->
         <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
       </div>
 
+      <!-- Aviso de privacidad -->
       <div class="private-warning">
         <p>Este contenido es privado. No se puede difundir sin autorización.</p>
       </div>
     </div>
   </div>
 
-  <!-- SCRIPTS -->
+  <!-- Scripts -->
   <script src="auth.js"></script>
   <script src="countdown.js"></script>
   <script>

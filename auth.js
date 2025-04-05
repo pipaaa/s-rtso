@@ -1,59 +1,45 @@
-// Función para cerrar sesión
-function logout() {
-  localStorage.removeItem("user");
+const user = sessionStorage.getItem("user");
+if (!user) {
   window.location.href = "index.html";
 }
 
-// Mostrar mensaje de bienvenida
 window.onload = function () {
-  const user = localStorage.getItem("user");
-  if (!user) {
-    window.location.href = "index.html";
-    return;
-  }
-
   const popup = document.getElementById("popup");
   const welcomeMessage = document.getElementById("welcomeMessage");
   const subscriptionInfo = document.getElementById("subscriptionInfo");
-  const mainContent = document.getElementById("main-content");
 
-  // Establecer mensaje
-  welcomeMessage.textContent = `Bienvenido, ${user}!`;
+  welcomeMessage.innerHTML = `Bienvenid@ a Play View, <strong>${user}</strong>`;
+  popup.style.display = "block";
+  popup.style.animation = "fadeIn 1s ease";
 
-  // Calcular días restantes
-  const subEnd = localStorage.getItem("subscriptionEnd");
-  if (subEnd) {
-    const endDate = new Date(subEnd);
-    const today = new Date();
-    const diff = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
-    subscriptionInfo.textContent =
-      diff >= 0
-        ? `Tu suscripción expira en ${diff} día(s).`
-        : "Tu suscripción ha expirado.";
+  document.getElementById("main-content").classList.add("blurred");
+
+  if (user === "not4dmin") {
+    subscriptionInfo.innerText = "Tienes acceso ilimitado.";
+  } else if (user === "Guadola") {
+    const demoDaysLeft = Math.max(
+      0,
+      Math.ceil((Date.now() + 7 * 24 * 60 * 60 * 1000 - Date.now()) / (1000 * 60 * 60 * 24))
+    );
+    subscriptionInfo.innerText = `Le quedan ${demoDaysLeft} días de membresía.`;
   }
 
-  // Mostrar popup
-  popup.style.display = "block";
-  popup.style.animation = "fadeIn 0.5s forwards";
-  mainContent.classList.add("blurred");
-
-  // Ocultar automáticamente el popup tras 4 segundos
   setTimeout(() => {
-    popup.style.animation = "fadeOut 0.5s forwards";
-    setTimeout(() => {
-      popup.style.display = "none";
-      mainContent.classList.remove("blurred");
-    }, 500);
+    closePopup();
   }, 4000);
 };
 
-// Cerrar el popup manualmente
 function closePopup() {
   const popup = document.getElementById("popup");
-  const mainContent = document.getElementById("main-content");
-  popup.style.animation = "fadeOut 0.5s forwards";
+  popup.style.animation = "fadeOut 0.5s ease";
   setTimeout(() => {
     popup.style.display = "none";
-    mainContent.classList.remove("blurred");
   }, 500);
+
+  document.getElementById("main-content").classList.remove("blurred");
+}
+
+function logout() {
+  sessionStorage.removeItem("user");
+  window.location.href = "index.html";
 }

@@ -28,32 +28,30 @@
       <h2 class="title">En directo!</h2>
 
       <!-- Contadores -->
-      <div class="match-countdown-container">
+      <div class="iframe-container">
         <!-- Contador Real Sociedad -->
-        <div class="match-card" id="countdownRSO">
+        <div class="match-countdown" id="countdownRSO" style="display: flex;">
           <img id="logoLocalRSO" class="team-logo" />
-          <div class="match-info">
-            <div id="equiposRSO" class="match-teams"></div>
-            <div id="ubicacionRSO" class="match-location"></div>
-            <div id="timerRSO" class="match-countdown"></div>
+          <div class="countdown-info">
+            <div id="equiposRSO" class="equipos"></div>
+            <div id="ubicacionRSO" class="ubicacion"></div>
+            <div id="timerRSO" class="temporizador"></div>
           </div>
           <img id="logoVisitanteRSO" class="team-logo" />
         </div>
 
         <!-- Contador Athletic -->
-        <div class="match-card" id="countdownATH">
+        <div class="match-countdown" id="countdownATH" style="display: flex;">
           <img id="logoLocalATH" class="team-logo" />
-          <div class="match-info">
-            <div id="equiposATH" class="match-teams"></div>
-            <div id="ubicacionATH" class="match-location"></div>
-            <div id="timerATH" class="match-countdown"></div>
+          <div class="countdown-info">
+            <div id="equiposATH" class="equipos"></div>
+            <div id="ubicacionATH" class="ubicacion"></div>
+            <div id="timerATH" class="temporizador"></div>
           </div>
           <img id="logoVisitanteATH" class="team-logo" />
         </div>
-      </div>
 
-      <!-- Iframe de contenido -->
-      <div class="iframe-container">
+        <!-- Iframe de contenido -->
         <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
       </div>
 

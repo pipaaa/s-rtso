@@ -57,10 +57,12 @@ if (popup && welcomeMessage && subscriptionInfo) {
   }, 4000);
 }
 
+// Función para cerrar el popup manualmente
 function closePopup() {
   popup.style.display = "none";
 }
 
+// Función para cerrar sesión
 function logout() {
   sessionStorage.removeItem("user");
   window.location.href = "index.html";

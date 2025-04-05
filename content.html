@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contenido Privado</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body oncontextmenu="return false" onkeydown="return bloquearInspeccion(event)">
+  <div class="header-buttons">
+    <button onclick="logout()">Cerrar Sesión</button>
+    <button onclick="window.location.href='subscription.html'">Mi Suscripción</button>
+  </div>
+
+  <div class="popup" id="popup">
+    <span class="close" onclick="closePopup()">×</span>
+    <div id="welcomeMessage"></div>
+    <div id="subscriptionInfo"></div>
+  </div>
+
+  <div class="content-container" id="contentContainer">
+    <h2 class="title">En directo!</h2>
+
+    <div class="iframe-container">
+      <div id="countdown-container"></div>
+      <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
+    </div>
+
+    <div class="private-warning">
+      <p>Este contenido es privado. No se puede difundir sin autorización.</p>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="countdown.js"></script>
+  <script>
+    function bloquearInspeccion(e) {
+      if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C"))) {
+        e.preventDefault();
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -3,21 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Play View Sports - Inicio de sesión</title>
+  <title>Iniciar Sesión</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="login-container">
-    <h1>Iniciar Sesión</h1>
-    <input type="text" id="username" placeholder="Usuario" />
-    <input type="password" id="password" placeholder="Contraseña" />
-    <button onclick="login()">Entrar</button>
-  </div>
+  <main>
+    <div class="login-container">
+      <h2>Iniciar Sesión</h2>
+      <form id="loginForm">
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" required />
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" required />
+
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
+  </main>
+
   <footer>
-    <p>&copy; Play View Sports 2025</p>
+    <p>© 2025 Tu Sitio. Todos los derechos reservados.</p>
   </footer>
+
+  <script src="auth.js"></script>
   <script src="users.js"></script>
 </body>
 </html>

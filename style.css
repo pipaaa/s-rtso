@@ -1,16 +1,19 @@
-body {
-  font-family: 'Poppins', sans-serif;
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  background: url('fotofondo.png') no-repeat center center fixed;
+  font-family: 'Poppins', sans-serif;
+  background: url('fotofondo.jpg') no-repeat center center fixed;
   background-size: cover;
   backdrop-filter: blur(8px);
   color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .login-container, .subscription-container {
   max-width: 400px;
-  margin: 100px auto;
+  margin: auto;
   padding: 30px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
@@ -30,15 +33,20 @@ button {
   background-color: #003366;
   color: white;
   cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #0055aa;
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   text-align: center;
   padding: 10px;
+  color: white;
+  margin-top: auto;
 }
 
 .header-buttons {
@@ -49,8 +57,9 @@ footer {
 
 .header-buttons button {
   margin-left: 10px;
-  padding: 5px 10px;
-  font-size: 12px;
+  padding: 8px 14px;
+  font-size: 13px;
+  background-color: #003366;
 }
 
 .popup {
@@ -62,6 +71,7 @@ footer {
   padding: 20px;
   border-radius: 10px;
   display: none;
+  z-index: 10;
 }
 
 .popup .close {
@@ -69,12 +79,12 @@ footer {
   top: 5px;
   right: 10px;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .title {
   text-align: center;
-  color: black;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.1);
   padding: 10px;
   border-radius: 8px;
   margin-top: 80px;
@@ -88,45 +98,29 @@ footer {
   margin: 20px;
 }
 
-.iframe-small {
+.iframe-small,
+.iframe-large {
   width: 90%;
-  height: 200px;
   border: none;
   border-radius: 10px;
 }
 
+.iframe-small {
+  height: 200px;
+}
+
 .iframe-large {
-  width: 90%;
   height: 540px;
-  border: none;
-  border-radius: 10px;
 }
 
 .private-warning {
   text-align: center;
-  margin: 50px 0;
-  color: white;
+  margin: 50px 0 20px;
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  border-radius: 10px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
-/* --- Sticky footer respetando tu estructura --- */
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.login-container {
-  flex: 1; /* Ocupa el espacio disponible y empuja el footer abajo */
-}
-
-footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
-

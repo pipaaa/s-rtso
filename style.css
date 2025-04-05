@@ -6,6 +6,7 @@ body {
   background-size: cover;
   backdrop-filter: blur(8px);
   color: white;
+  text-shadow: 1px 1px 2px black;
 }
 
 .login-container, .subscription-container {
@@ -33,7 +34,7 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   font-size: 18px;
-  padding: 14px 24px;
+  padding: 12px 18px;
 }
 
 button:hover {
@@ -52,27 +53,17 @@ footer {
 
 .header-buttons {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   display: flex;
-  gap: 12px;
+  gap: 15px;
 }
 
 .header-buttons button {
-  font-size: 22px;
-  padding: 16px 28px;
+  font-size: 20px;
+  padding: 14px 20px;
   width: auto;
   border-radius: 10px;
-  background-color: #003366;
-  color: white;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.header-buttons button:hover {
-  background-color: #0055aa;
-  transform: scale(1.05);
 }
 
 .popup {
@@ -94,17 +85,19 @@ footer {
 }
 
 .title {
+  display: inline-block;
   text-align: center;
   color: white;
-  padding: 10px 20px;
   border: 2px solid white;
+  padding: 10px 24px;
   border-radius: 10px;
-  margin-top: 80px;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  text-shadow: 2px 2px 5px black;
   font-size: 32px;
+  margin-top: 80px;
+  margin-bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
 }
 
 .iframe-container {
@@ -133,5 +126,5 @@ footer {
   text-align: center;
   margin: 50px 0;
   color: white;
-  text-shadow: 1px 1px 3px black;
+  text-shadow: 1px 1px 2px black;
 }

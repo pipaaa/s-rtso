@@ -7,22 +7,22 @@ if (!user) {
 const popup = document.getElementById("popup");
 const welcomeMessage = document.getElementById("welcomeMessage");
 const subscriptionInfo = document.getElementById("subscriptionInfo");
-const body = document.querySelector("body");
+const body = document.body;
 
 if (popup && welcomeMessage && subscriptionInfo) {
   popup.style.display = "block";
   popup.classList.add("popup-visible");
   body.classList.add("blur-background");
 
-  // Mensaje con nombre en negrita
+  // Mostrar mensaje de bienvenida con nombre en negrita
   welcomeMessage.innerHTML = `Bienvenid@ a PlayView <strong>${user}</strong>`;
 
-  // Info de suscripción
+  // Mostrar días restantes de membresía
   if (user === "not4dmin") {
     subscriptionInfo.innerText = "Tienes acceso ilimitado.";
-  } else if (user === "Guadola") {
-    const demoDaysLeft = Math.max(0, Math.ceil((users["Guadola"].expires - Date.now()) / (1000 * 60 * 60 * 24)));
-    subscriptionInfo.innerText = `Le quedan ${demoDaysLeft} días de membresía.`;
+  } else if (users[user] && users[user].expires) {
+    const daysLeft = Math.max(0, Math.ceil((users[user].expires - Date.now()) / (1000 * 60 * 60 * 24)));
+    subscriptionInfo.innerText = `Te quedan ${daysLeft} día${daysLeft !== 1 ? 's' : ''} de membresía.`;
   }
 
   // Cierre automático del popup a los 4 segundos
@@ -32,9 +32,11 @@ if (popup && welcomeMessage && subscriptionInfo) {
 }
 
 function closePopup() {
-  popup.classList.remove("popup-visible");
-  body.classList.remove("blur-background");
-  popup.style.display = "none";
+  const popup = document.getElementById("popup");
+  if (popup) {
+    popup.style.display = "none";
+  }
+  document.body.classList.remove("blur-background");
 }
 
 function logout() {

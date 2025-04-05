@@ -1,0 +1,109 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url('fotofondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  backdrop-filter: blur(8px);
+  color: white;
+}
+
+.login-container, .subscription-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  text-align: center;
+}
+
+input, button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  background-color: #003366;
+  color: white;
+  cursor: pointer;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  padding: 10px;
+}
+
+.header-buttons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.header-buttons button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+}
+
+.popup .close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.title {
+  text-align: center;
+  color: black;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 80px;
+}
+
+.iframe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+}
+
+.iframe-small {
+  width: 90%;
+  height: 200px;
+  border: none;
+  border-radius: 10px;
+}
+
+.iframe-large {
+  width: 90%;
+  height: 540px;
+  border: none;
+  border-radius: 10px;
+}
+
+.private-warning {
+  text-align: center;
+  margin: 50px 0;
+  color: white;
+}

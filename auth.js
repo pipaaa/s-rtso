@@ -1,39 +1,31 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Obtener el nombre de usuario desde el almacenamiento o del servidor
-  const username = "NombreUsuario";  // Aquí debes poner la lógica para obtener el nombre de usuario
 
-  const popup = document.querySelector(".popup");
-  const closeButton = document.querySelector(".popup .close");
-  const welcomeMessage = document.querySelector("#welcomeMessage");
-  const subscriptionInfo = document.querySelector("#subscriptionInfo");
-  const body = document.querySelector("body");
+const user = sessionStorage.getItem("user");
 
-  // Asegurarnos de que el popup tiene el mensaje correcto
-  welcomeMessage.innerHTML = `Bienvenid@ a PlayView <strong>${username}</strong>`;
-  subscriptionInfo.innerHTML = "Días restantes: 30";  // Aquí puedes cambiar la lógica según tus necesidades
+if (!user) {
+  window.location.href = "index.html";
+}
 
-  // Mostrar el popup
+const popup = document.getElementById("popup");
+const welcomeMessage = document.getElementById("welcomeMessage");
+const subscriptionInfo = document.getElementById("subscriptionInfo");
+
+if (popup && welcomeMessage && subscriptionInfo) {
   popup.style.display = "block";
+  welcomeMessage.innerText = `Bienvenido ${user} a Play View!`;
 
-  // Difuminar el fondo
-  body.classList.add("blur");
+  if (user === "not4dmin") {
+    subscriptionInfo.innerText = "Tienes acceso ilimitado.";
+  } else if (user === "Guadola") {
+    const demoDaysLeft = Math.max(0, Math.ceil((users["Guadola"].expires - Date.now()) / (1000 * 60 * 60 * 24)));
+    subscriptionInfo.innerText = `Le quedan ${demoDaysLeft} días de membresía.`;
+  }
+}
 
-  // Añadir la clase para difuminar el fondo con animación
-  setTimeout(() => {
-    body.classList.add("blurred");
-  }, 100);
+function closePopup() {
+  popup.style.display = "none";
+}
 
-  // Cerrar el popup después de 4 segundos
-  setTimeout(() => {
-    popup.style.display = "none";
-    body.classList.remove("blurred");
-    body.classList.remove("blur");
-  }, 4000);
-
-  // Cerrar el popup manualmente al hacer clic en el botón de cerrar
-  closeButton.addEventListener("click", () => {
-    popup.style.display = "none";
-    body.classList.remove("blurred");
-    body.classList.remove("blur");
-  });
-});
+function logout() {
+  sessionStorage.removeItem("user");
+  window.location.href = "index.html";
+}

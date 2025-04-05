@@ -11,10 +11,7 @@ body {
 .login-container, .subscription-container {
   max-width: 400px;
   margin: 100px auto;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding: 30px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   text-align: center;
@@ -57,13 +54,7 @@ footer {
   right: 10px;
 }
 
-.header-buttons button {
-  margin-left: 10px;
-  padding: 5px 10px;
-  font-size: 12px;
-}
-
-.header-buttons-horizontal {
+.header-buttons-row {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
@@ -73,7 +64,7 @@ footer {
   right: 10px;
 }
 
-.header-buttons-horizontal button {
+.header-buttons-row button {
   padding: 8px 15px;
   border-radius: 8px;
   background-color: #003366;
@@ -84,7 +75,7 @@ footer {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.header-buttons-horizontal button:hover {
+.header-buttons-row button:hover {
   background-color: #0055aa;
   transform: scale(1.05);
 }

@@ -7,14 +7,12 @@ if (!user) {
 const popup = document.getElementById("popup");
 const welcomeMessage = document.getElementById("welcomeMessage");
 const subscriptionInfo = document.getElementById("subscriptionInfo");
-const body = document.body;
 
 if (popup && welcomeMessage && subscriptionInfo) {
   popup.style.display = "block";
-  popup.classList.add("popup-visible");
-  body.classList.add("blur-background");
+  document.body.classList.add("blur-background");
 
-  // Mostrar mensaje de bienvenida con nombre en negrita
+  // Mensaje de bienvenida con nombre en negrita
   welcomeMessage.innerHTML = `Bienvenid@ a PlayView <strong>${user}</strong>`;
 
   // Mostrar días restantes de membresía
@@ -25,7 +23,7 @@ if (popup && welcomeMessage && subscriptionInfo) {
     subscriptionInfo.innerText = `Te quedan ${daysLeft} día${daysLeft !== 1 ? 's' : ''} de membresía.`;
   }
 
-  // Cierre automático del popup a los 4 segundos
+  // Cierre automático del popup después de 4 segundos
   setTimeout(() => {
     closePopup();
   }, 4000);

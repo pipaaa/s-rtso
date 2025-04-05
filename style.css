@@ -120,13 +120,13 @@ footer {
   margin: 50px 0;
   color: white;
 }
-/* Difuminado de fondo mientras está el popup */
-.blur-background {
+/* Aplica el difuminado solo al contenido del body, no al popup */
+.blur-background *:not(#popup) {
   filter: blur(8px);
   transition: filter 0.5s ease;
 }
 
-/* Popup con animación */
+/* Popup sin difuminado */
 .popup {
   position: fixed;
   top: 20%;
@@ -141,6 +141,7 @@ footer {
   display: none;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
   font-family: 'Poppins', sans-serif;
+  filter: none !important; /* <-- Muy importante para evitar que se herede blur */
 }
 
 .popup-visible {
@@ -166,4 +167,3 @@ footer {
   cursor: pointer;
   color: white;
 }
-

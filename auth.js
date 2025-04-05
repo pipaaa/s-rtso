@@ -8,24 +8,46 @@ const popup = document.getElementById("popup");
 const welcomeMessage = document.getElementById("welcomeMessage");
 const subscriptionInfo = document.getElementById("subscriptionInfo");
 
+// Función para obtener la fecha de expiración basada en el tipo de usuario
+function getUserExpiration(user) {
+  const currentDate = Date.now();
+  
+  // Si el usuario es admin, no hay expiración
+  if (user === "admin") {
+    return Infinity; // Acceso ilimitado
+  }
+  
+  // Si el usuario es de tipo demo, la expiración será definida (puedes ajustarlo según sea necesario)
+  if (user === "Guadola") {
+    // Por ejemplo, Guadola tiene 7 días de demo
+    return currentDate + (7 * 24 * 60 * 60 * 1000); // 7 días en milisegundos
+  }
+  
+  // Para otros usuarios con membresía de 1 mes
+  return currentDate + (30 * 24 * 60 * 60 * 1000); // 30 días en milisegundos
+}
+
+const userExpires = getUserExpiration(user);
+
 if (popup && welcomeMessage && subscriptionInfo) {
   popup.style.display = "block";
   
   // Mostrar mensaje de bienvenida con el nombre del usuario en negrita
   welcomeMessage.innerHTML = `Bienvenid@ a PlayView <strong>${user}</strong>!`;
 
-  // Información de la membresía basada en el usuario
-  if (user === "not4dmin") {
+  // Información de la membresía basada en la expiración
+  if (user === "admin") {
     subscriptionInfo.innerText = "Tienes acceso ilimitado.";
-  } else if (user === "Guadola") {
-    // Asegurarnos de que 'expires' es un número (timestamp)
-    const userExpires = users["Guadola"]?.expires;
-    if (userExpires) {
-      // Calculamos los días restantes de la membresía
-      const demoDaysLeft = Math.max(0, Math.ceil((userExpires - Date.now()) / (1000 * 60 * 60 * 24)));
+  } else {
+    // Calculamos los días restantes de la membresía
+    const demoDaysLeft = Math.max(0, Math.ceil((userExpires - Date.now()) / (1000 * 60 * 60 * 24)));
+    
+    if (userExpires === Infinity) {
+      subscriptionInfo.innerText = "Tienes acceso ilimitado.";
+    } else if (demoDaysLeft > 0) {
       subscriptionInfo.innerText = `Te quedan ${demoDaysLeft} días de membresía.`;
     } else {
-      subscriptionInfo.innerText = "No se pudo calcular el tiempo de membresía.";
+      subscriptionInfo.innerText = "Tu membresía ha expirado.";
     }
   }
 

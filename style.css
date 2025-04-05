@@ -15,10 +15,11 @@ body {
 .login-container, .subscription-container {
   max-width: 400px;
   margin: auto;
-  padding: 30px 40px 30px 30px; /* Aumentado padding derecho */
+  padding: 30px; /* Simétrico: 30px en todos los lados */
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); /* Sombra suave */
 }
 
 input, .login-button {

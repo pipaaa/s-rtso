@@ -136,7 +136,7 @@ const partidos = [
     logoLocal: "logoRMA.png",
     logoVisitante: "logoRSO.png"
   },
-  
+
   // Europa League
   {
     equipoLocal: "Rangers",

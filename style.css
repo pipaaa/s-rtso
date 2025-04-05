@@ -107,3 +107,26 @@ footer {
   margin: 50px 0;
   color: white;
 }
+/* --- Sticky footer respetando tu estructura --- */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.login-container {
+  flex: 1; /* Ocupa el espacio disponible y empuja el footer abajo */
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+

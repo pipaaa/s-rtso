@@ -1,109 +1,69 @@
 const partidos = [
-  {
-    equipo: "RSO",
-    rivales: [
-      { local: "LPA", visitante: "RSO", fecha: "2025-04-06T14:00:00" },
-      { local: "RSO", visitante: "MLL", fecha: "2025-04-12T14:00:00" },
-      { local: "VIL", visitante: "RSO", fecha: "2025-04-20T16:15:00" },
-      { local: "ALA", visitante: "RSO", fecha: "2025-04-28T21:30:00" },
-      { local: "ATH", visitante: "RSO", fecha: "2025-05-04" },
-      { local: "ATM", visitante: "RSO", fecha: "2025-05-11" },
-      { local: "RSO", visitante: "CEL", fecha: "2025-05-14" },
-      { local: "RSO", visitante: "GIR", fecha: "2025-05-18" },
-      { local: "RMA", visitante: "RSO", fecha: "2025-05-25" },
-    ]
-  },
-  {
-    equipo: "ATH",
-    rivales: [
-      { local: "VIL", visitante: "ATH", fecha: "2025-04-06T21:00:00" },
-      { local: "ATH", visitante: "RAY", fecha: "2025-04-13T21:00:00" },
-      { local: "RAN", visitante: "ATH", fecha: "2025-04-10T21:00:00" },
-      { local: "ATH", visitante: "RAN", fecha: "2025-04-17T21:00:00" },
-      { local: "ATH", visitante: "LPA", fecha: "2025-04-27T19:00:00" },
-      { local: "ATH", visitante: "RSO", fecha: "2025-05-04" },
-      { local: "ATH", visitante: "ALA", fecha: "2025-05-11" },
-      { local: "GET", visitante: "ATH", fecha: "2025-05-14" },
-      { local: "VAL", visitante: "ATH", fecha: "2025-05-18" },
-      { local: "ATH", visitante: "FCB", fecha: "2025-05-25" }
-    ]
-  }
+  // FORMATO: [fecha (UTC), local, visitante, 'RSO' o 'ATH']
+  ["2025-04-06T14:00:00", "LPA", "RSO", "RSO"],
+  ["2025-04-06T21:00:00", "VIL", "ATH", "ATH"],
+  ["2025-04-12T14:00:00", "RSO", "MLL", "RSO"],
+  ["2025-04-13T21:00:00", "ATH", "RAY", "ATH"],
+  ["2025-04-20T16:15:00", "VIL", "RSO", "RSO"],
+  ["2025-04-20T21:00:00", "RMA", "ATH", "ATH"],
+  ["2025-04-26T19:00:00", "ATH", "LPA", "ATH"],
+  ["2025-04-27T21:30:00", "ALA", "RSO", "RSO"],
+  ["2025-05-04", "ATH", "RSO", "ATH"],
+  ["2025-05-11", "ATH", "ALA", "ATH"],
+  ["2025-05-11", "ATM", "RSO", "RSO"],
+  ["2025-05-14", "GET", "ATH", "ATH"],
+  ["2025-05-14", "RSO", "CEL", "RSO"],
+  ["2025-05-18", "RSO", "GIR", "RSO"],
+  ["2025-05-18", "VAL", "ATH", "ATH"],
+  ["2025-05-25", "ATH", "FCB", "ATH"],
+  ["2025-05-25", "RMA", "RSO", "RSO"],
+  ["2025-04-10T21:00:00", "RAN", "ATH", "ATH"],
+  ["2025-04-17T21:00:00", "ATH", "RAN", "ATH"],
+  ["2025-05-01T21:00:00", "ATH", "XXX", "ATH"],
+  ["2025-05-08T21:00:00", "XXX", "ATH", "ATH"]
 ];
 
-function iniciarContadores() {
-  partidos.forEach(partido => {
-    const proximo = buscarProximoPartido(partido.rivales);
-    if (!proximo) return;
-
-    const id = partido.equipo === "RSO" ? "RSO" : "ATH";
-    const local = proximo.local;
-    const visitante = proximo.visitante;
-    const lugar = partido.equipo === local ? "En casa" : "Fuera";
-    const logoLocal = `logo${local}.png`;
-    const logoVisitante = `logo${visitante}.png`;
-
-    document.getElementById(`teams${id}`).textContent = `${local} - ${visitante}`;
-    document.getElementById(`location${id}`).textContent = lugar;
-    document.getElementById(`homeLogo${id}`).src = logoLocal;
-    document.getElementById(`awayLogo${id}`).src = logoVisitante;
-
-    actualizarCuentaAtras(`countdown${id}`, proximo.fecha, partido.rivales, 0);
-  });
-}
-
-function buscarProximoPartido(lista) {
+function crearContador(idPrefix, equipo) {
   const ahora = new Date();
-  for (let i = 0; i < lista.length; i++) {
-    const fecha = new Date(lista[i].fecha);
-    if (ahora < fecha || (lista[i].fecha.length <= 10 && esHoy(lista[i].fecha))) {
-      return lista[i];
-    }
-  }
-  return null;
-}
+  const siguiente = partidos.find(p => p[3] === equipo && new Date(p[0]) > ahora);
+  if (!siguiente) return;
 
-function esHoy(fechaStr) {
-  const hoy = new Date();
-  const f = new Date(fechaStr + "T00:00:00");
-  return hoy.toDateString() === f.toDateString();
-}
+  const [fechaStr, local, visitante, tipo] = siguiente;
+  const fechaPartido = new Date(fechaStr);
+  const esEnCasa = local === tipo;
+  const ubicacion = esEnCasa ? "En casa" : "Fuera de casa";
+  const localLogo = `logo${local}.png`;
+  const visitanteLogo = `logo${visitante}.png`;
 
-function actualizarCuentaAtras(id, fechaStr, lista, index) {
-  const elem = document.getElementById(id);
-  const fecha = new Date(fechaStr);
-  const sinHora = fechaStr.length <= 10;
+  document.getElementById(`logoLocal${tipo}`).src = `./${localLogo}`;
+  document.getElementById(`logoVisitante${tipo}`).src = `./${visitanteLogo}`;
+  document.getElementById(`equipos${tipo}`).textContent = `${local} - ${visitante}`;
+  document.getElementById(`ubicacion${tipo}`).textContent = ubicacion;
 
-  function tick() {
+  const timerEl = document.getElementById(`timer${tipo}`);
+
+  function actualizarContador() {
     const ahora = new Date();
-    if (sinHora && esHoy(fechaStr)) {
-      elem.textContent = "HOY!";
-      return;
+    const diff = fechaPartido - ahora;
+
+    if (diff <= 0 && diff > -105 * 60000) {
+      timerEl.textContent = "EN DIRECTO!";
+    } else if (fechaStr.length === 10 && ahora.toISOString().slice(0, 10) === fechaStr) {
+      timerEl.textContent = "HOY!";
+    } else if (diff <= -105 * 60000) {
+      location.reload(); // refrescar para mostrar el siguiente partido
+    } else {
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+      timerEl.textContent = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
     }
-
-    const diff = fecha - ahora;
-
-    if (diff <= 0 && diff > -105 * 60 * 1000) {
-      elem.textContent = "EN DIRECTO!";
-      return;
-    }
-
-    if (diff <= -105 * 60 * 1000) {
-      const siguiente = buscarProximoPartido(lista.slice(index + 1));
-      if (siguiente) {
-        actualizarCuentaAtras(id, siguiente.fecha, lista, index + 1);
-      }
-      return;
-    }
-
-    const horas = Math.floor(diff / (1000 * 60 * 60));
-    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const segs = Math.floor((diff % (1000 * 60)) / 1000);
-
-    elem.textContent = `${horas}h ${mins}m ${segs}s`;
   }
 
-  tick();
-  setInterval(tick, 1000);
+  actualizarContador();
+  setInterval(actualizarContador, 1000);
 }
 
-document.addEventListener("DOMContentLoaded", iniciarContadores);
+crearContador("countdownRSO", "RSO");
+crearContador("countdownATH", "ATH");

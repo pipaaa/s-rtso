@@ -1,51 +1,54 @@
-const user = sessionStorage.getItem("user");
+document.addEventListener('DOMContentLoaded', function () {
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+  const currentUser = localStorage.getItem('currentUser');
+  const subscriptionInfo = document.getElementById('subscription-info');
 
-if (!user) {
-  window.location.href = "index.html";
-}
-
-const users = {
-  "Guadola": {
-    password: "baltza2025",
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 días desde ahora
-  },
-  "not4dmin": {
-    password: "4false",
-    expires: null // acceso ilimitado
-  }
-};
-
-const popup = document.getElementById("popup");
-const welcomeMessage = document.getElementById("welcomeMessage");
-const subscriptionInfo = document.getElementById("subscriptionInfo");
-
-if (popup && welcomeMessage && subscriptionInfo) {
-  popup.style.display = "block";
-  document.body.classList.add("blurred");
-
-  welcomeMessage.innerHTML = `Bienvenid@ a PlayView <strong>${user}</strong>`;
-
-  if (users[user]) {
-    const expires = users[user].expires;
-    if (expires === null) {
-      subscriptionInfo.innerText = "Tienes acceso ilimitado.";
-    } else {
-      const diasRestantes = Math.max(0, Math.ceil((expires - Date.now()) / (1000 * 60 * 60 * 24)));
-      subscriptionInfo.innerText = `Le quedan ${diasRestantes} días de membresía.`;
-    }
+  if (!currentUser) {
+    window.location.href = 'index.html';
+    return;
   }
 
+  const user = users.find(u => u.username === currentUser);
+
+  if (!user) {
+    window.location.href = 'index.html';
+    return;
+  }
+
+  // Calcular días restantes de suscripción
+  const today = new Date();
+  const expiryDate = new Date(user.subscriptionDate);
+  const diffTime = expiryDate - today;
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  if (diffDays < 0) {
+    window.location.href = 'index.html';
+    return;
+  }
+
+  if (subscriptionInfo) {
+    subscriptionInfo.textContent = `Días restantes de suscripción: ${diffDays}`;
+  }
+
+  // Mostrar mensaje de bienvenida con popup
+  const popup = document.createElement('div');
+  popup.className = 'popup';
+
+  popup.innerHTML = `
+    <button class="close" onclick="this.parentElement.classList.add('fade-out'); setTimeout(() => { this.parentElement.remove(); document.body.classList.remove('blurred'); }, 500)">×</button>
+    <h2>Bienvenid@ a PlayView <strong>${user.username}</strong></h2>
+    <p>Te quedan <strong>${diffDays}</strong> día${diffDays !== 1 ? 's' : ''} de membresía</p>
+  `;
+
+  document.body.appendChild(popup);
+  document.body.classList.add('blurred');
+
+  // Auto cerrar popup
   setTimeout(() => {
-    closePopup();
+    popup.classList.add('fade-out');
+    setTimeout(() => {
+      popup.remove();
+      document.body.classList.remove('blurred');
+    }, 500);
   }, 4000);
-}
-
-function closePopup() {
-  popup.style.display = "none";
-  document.body.classList.remove("blurred");
-}
-
-function logout() {
-  sessionStorage.removeItem("user");
-  window.location.href = "index.html";
-}
+});

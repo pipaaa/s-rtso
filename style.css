@@ -120,6 +120,7 @@ footer {
   margin: 50px 0;
   color: white;
 }
+
 /* Fondo difuminado mientras hay popup */
 .blurred::before {
   content: "";
@@ -129,43 +130,6 @@ footer {
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 998;
   animation: fadeInBlur 0.5s ease-in-out forwards;
-}
-
-/* Popup general */
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(20, 20, 20, 0.95);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-  z-index: 999;
-  font-family: 'Poppins', sans-serif;
-  color: white;
-  text-align: center;
-  animation: popupFadeIn 0.6s ease forwards;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* Estado de salida del popup */
-.popup.fade-out {
-  opacity: 0;
-  transform: translate(-50%, -60%);
-  pointer-events: none;
-}
-
-/* Animación entrada */
-@keyframes popupFadeIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -60%);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
 }
 
 /* Animación del difuminado */
@@ -196,6 +160,7 @@ footer {
 .popup .close:hover {
   transform: scale(1.2);
 }
+
 /* Fondo difuminado */
 body {
   background-image: url('football-488714.jpg');
@@ -221,7 +186,6 @@ body.blur {
   padding: 20px;
   border-radius: 10px;
   display: none;
-  animation: popupAnimation 0.5s ease-in-out;
 }
 
 .popup .close {
@@ -230,28 +194,6 @@ body.blur {
   right: 10px;
   font-size: 24px;
   cursor: pointer;
-}
-
-@keyframes popupAnimation {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Estilos de texto dentro del popup */
-#welcomeMessage {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-#subscriptionInfo {
-  font-size: 1.2em;
 }
 
 /* Botones */

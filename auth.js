@@ -4,6 +4,17 @@ if (!user) {
   window.location.href = "index.html";
 }
 
+const users = {
+  "Guadola": {
+    password: "baltza2025",
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 días desde ahora
+  },
+  "not4dmin": {
+    password: "4false",
+    expires: null // acceso ilimitado
+  }
+};
+
 const popup = document.getElementById("popup");
 const welcomeMessage = document.getElementById("welcomeMessage");
 const subscriptionInfo = document.getElementById("subscriptionInfo");
@@ -14,14 +25,16 @@ if (popup && welcomeMessage && subscriptionInfo) {
 
   welcomeMessage.innerHTML = `Bienvenid@ a PlayView <strong>${user}</strong>`;
 
-  if (user === "not4dmin") {
-    subscriptionInfo.innerText = "Tienes acceso ilimitado.";
-  } else if (user === "Guadola") {
-    const demoDaysLeft = Math.max(0, Math.ceil((users["Guadola"].expires - Date.now()) / (1000 * 60 * 60 * 24)));
-    subscriptionInfo.innerText = `Le quedan ${demoDaysLeft} días de membresía.`;
+  if (users[user]) {
+    const expires = users[user].expires;
+    if (expires === null) {
+      subscriptionInfo.innerText = "Tienes acceso ilimitado.";
+    } else {
+      const diasRestantes = Math.max(0, Math.ceil((expires - Date.now()) / (1000 * 60 * 60 * 24)));
+      subscriptionInfo.innerText = `Le quedan ${diasRestantes} días de membresía.`;
+    }
   }
 
-  // Cierre automático a los 4 segundos
   setTimeout(() => {
     closePopup();
   }, 4000);

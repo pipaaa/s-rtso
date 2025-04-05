@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Login - Play View Sports</title>
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="favicon.png" type="image/png" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 </head>
-<body>
-<div class="container">
-<h1>Iniciar sesión</h1>
-<input type="text" id="username" placeholder="Usuario">
-<input type="password" id="password" placeholder="Contraseña">
+<body class="login-page">
+<div class="background-blur"></div>
+<div class="overlay-dark"></div>
+
+<div class="login-container">
+<h1>Iniciar Sesión</h1>
+<input type="text" id="username" placeholder="Usuario" />
+<input type="password" id="password" placeholder="Contraseña" />
 <button onclick="login()">Entrar</button>
-<p id="error-message"></p>
 </div>
 
 <footer>
-&copy; <span>Play View Sports 2025</span>
+<p>&copy; Play View Sports 2025</p>
 </footer>
 
-<script src="usuarios.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

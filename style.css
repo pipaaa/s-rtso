@@ -120,6 +120,7 @@ footer {
   margin: 50px 0;
   color: white;
 }
+
 /* Fondo difuminado cuando el popup está activo */
 .blurred::before {
   content: "";
@@ -131,6 +132,12 @@ footer {
   backdrop-filter: blur(8px);
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  opacity: 0; /* Comienza oculto */
+  transition: opacity 0.5s ease-in-out; /* Transición suave */
+}
+
+.blurred.active::before {
+  opacity: 1; /* Se hace visible cuando se agrega la clase .active */
 }
 
 /* Estilo del popup */
@@ -171,3 +178,22 @@ footer {
   transform: scale(1.05);
 }
 
+/* Fondo difuminado cuando el popup está activo */
+#popupBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente negro */
+  backdrop-filter: blur(5px); /* Aplica el difuminado */
+  z-index: 999; /* Asegúrate de que quede por debajo del popup */
+  display: none; /* Inicialmente oculto */
+  opacity: 0; /* Comienza oculto */
+  transition: opacity 0.5s ease-in-out; /* Transición suave */
+}
+
+#popupBackdrop.active {
+  display: block;
+  opacity: 1; /* Se hace visible cuando se agrega la clase .active */
+}

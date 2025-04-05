@@ -8,10 +8,13 @@ body {
   color: white;
 }
 
-.login-container, .subscription-container {
+.login-container {
   max-width: 400px;
   margin: 100px auto;
-  padding: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   text-align: center;
@@ -47,7 +50,6 @@ footer {
   text-align: center;
   padding: 10px;
 }
-
 .header-buttons-row {
   position: absolute;
   top: 10px;
@@ -73,59 +75,3 @@ footer {
   transform: scale(1.05);
 }
 
-.popup {
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -20%);
-  background-color: rgba(0, 0, 0, 0.85);
-  padding: 20px;
-  border-radius: 10px;
-  display: none;
-}
-
-.popup .close {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  cursor: pointer;
-}
-
-.title {
-  text-align: center;
-  color: black;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 10px;
-  border-radius: 8px;
-  margin-top: 80px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.iframe-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin: 20px;
-}
-
-.iframe-small {
-  width: 90%;
-  height: 200px;
-  border: none;
-  border-radius: 10px;
-}
-
-.iframe-large {
-  width: 90%;
-  height: 540px;
-  border: none;
-  border-radius: 10px;
-}
-
-.private-warning {
-  text-align: center;
-  margin: 50px 0;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-}

@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Contenido - Play View Sports</title>
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="favicon.png" />
 </head>
 <body>
-<div class="top-bar">
-<button onclick="logout()">Cerrar sesión</button>
+<div class="background-blur"></div>
+<div class="overlay-dark"></div>
+
+<div class="content-wrapper">
+<div class="header-bar">
+<h2>¡En directo!</h2>
+<div class="top-buttons">
+<button onclick="logout()">Cerrar Sesión</button>
 <button onclick="window.location.href='suscripcion.html'">Mi suscripción</button>
 </div>
-
-<div id="welcome-popup">
-<span class="close-btn" onclick="closePopup()">×</span>
-<p id="welcome-text"></p>
 </div>
 
-<h2 class="section-title">En directo!</h2>
-
-<iframe src="https://www.example.com" height="150"></iframe>
-<iframe src="https://www.example.com" height="540"></iframe>
-
-<div class="notice">
-Este contenido es privado. No se puede difundir sin autorización.
+<div id="popup" class="popup" style="display: none;">
+<button class="close-btn" onclick="cerrarPopup()">×</button>
+<h3 id="bienvenida"></h3>
+<p id="dias-restantes"></p>
 </div>
 
-<script src="usuarios.js"></script>
-<script src="script.js"></script>
+<iframe class="iframe-small" src="https://example.com"></iframe>
+<iframe class="iframe-large" src="https://example.com"></iframe>
+
+<div class="private-notice">
+Este contenido es privado y no se puede difundir sin autorización.
+</div>
+</div>
+
+<script src="auth.js"></script>
 </body>
 </html>

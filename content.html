@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contenido Privado</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png" type="image/png" />
+</head>
+<body>
+  <div class="header-buttons">
+    <button onclick="logout()">Cerrar Sesión</button>
+    <button onclick="window.location.href='subscription.html'">Mi Suscripción</button>
+  </div>
+
+  <div class="popup" id="popup">
+    <span class="close" onclick="closePopup()">×</span>
+    <div id="welcomeMessage"></div>
+    <div id="subscriptionInfo"></div>
+  </div>
+
+  <h2 class="title">En directo!</h2>
+
+  <div class="iframe-container">
+    <iframe src="https://example.com/stream1" class="iframe-small"></iframe>
+    <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
+  </div>
+
+  <div class="private-warning">
+    <p>Este contenido es privado. No se puede difundir sin autorización.</p>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

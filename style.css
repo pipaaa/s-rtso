@@ -6,52 +6,45 @@ body {
   background-size: cover;
   backdrop-filter: blur(8px);
   color: white;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .login-container, .subscription-container {
   max-width: 400px;
-  margin: auto;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  padding-left: 30px;
-  padding-right: 50px; /* Ajuste visual: más espacio a la derecha */
+  margin: 100px auto;
+  padding: 30px 50px 30px 30px; /* 30px izquierda, 50px derecha */
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
 }
 
-input, .login-button {
+.login-container h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+input, button {
   display: block;
   width: 100%;
   margin: 10px 0;
-  padding: 12px;
+  padding: 10px;
   border-radius: 8px;
   border: none;
+  box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-}
-
-.login-button {
-  background: linear-gradient(135deg, #003366, #0055aa);
-  color: white;
-  font-weight: 600;
   font-size: 16px;
+}
+
+button {
+  background-color: #003366;
+  color: white;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.login-button:hover {
-  background: linear-gradient(135deg, #002244, #004488);
-  transform: scale(1.03);
-}
-
-.login-button:active {
-  background: linear-gradient(135deg, #001122, #003377);
-  transform: scale(0.97);
+button:hover {
+  background-color: #0055aa;
+  transform: scale(1.05);
 }
 
 footer {
@@ -61,7 +54,6 @@ footer {
   background-color: rgba(0, 0, 0, 0.8);
   text-align: center;
   padding: 10px;
-  font-size: 14px;
 }
 
 .header-buttons {

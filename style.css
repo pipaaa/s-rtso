@@ -31,7 +31,7 @@ button {
   background-color: #003366;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
@@ -48,31 +48,24 @@ footer {
   padding: 10px;
 }
 
-.header-buttons {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
 .header-buttons-row {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 10px;
   position: absolute;
   top: 10px;
   right: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .header-buttons-row button {
-  padding: 8px 15px;
-  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
   background-color: #003366;
   color: white;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .header-buttons-row button:hover {
@@ -105,6 +98,7 @@ footer {
   padding: 10px;
   border-radius: 8px;
   margin-top: 80px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .iframe-container {
@@ -133,4 +127,5 @@ footer {
   text-align: center;
   margin: 50px 0;
   color: white;
+  font-family: 'Poppins', sans-serif;
 }

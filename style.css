@@ -32,6 +32,8 @@ button {
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 18px;
+  padding: 14px 24px;
 }
 
 button:hover {
@@ -53,12 +55,12 @@ footer {
   top: 10px;
   right: 10px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .header-buttons button {
-  font-size: 20px;
-  padding: 14px 22px;
+  font-size: 22px;
+  padding: 16px 28px;
   width: auto;
   border-radius: 10px;
   background-color: #003366;
@@ -102,7 +104,7 @@ footer {
   margin-right: auto;
   width: fit-content;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  font-size: 28px;
+  font-size: 32px;
 }
 
 .iframe-container {

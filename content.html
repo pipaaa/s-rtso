@@ -23,8 +23,27 @@
   <div class="content-container">
     <h2 class="title">En directo!</h2>
 
-    <!-- CONTADOR DE PARTIDOS -->
-    <div id="match-countdowns" class="match-countdowns"></div>
+    <div class="match-countdown-container">
+      <div class="match-card" id="match-rso">
+        <img id="homeLogoRSO" class="team-logo" src="" alt="Logo local">
+        <div class="match-info">
+          <div id="teamsRSO" class="match-teams">Equipo local - Equipo visitante</div>
+          <div id="locationRSO" class="match-location">Lugar</div>
+          <div id="countdownRSO" class="match-countdown">Cargando...</div>
+        </div>
+        <img id="awayLogoRSO" class="team-logo" src="" alt="Logo visitante">
+      </div>
+
+      <div class="match-card" id="match-ath">
+        <img id="homeLogoATH" class="team-logo" src="" alt="Logo local">
+        <div class="match-info">
+          <div id="teamsATH" class="match-teams">Equipo local - Equipo visitante</div>
+          <div id="locationATH" class="match-location">Lugar</div>
+          <div id="countdownATH" class="match-countdown">Cargando...</div>
+        </div>
+        <img id="awayLogoATH" class="team-logo" src="" alt="Logo visitante">
+      </div>
+    </div>
 
     <div class="iframe-container">
       <iframe src="https://example.com/stream2" class="iframe-large"></iframe>

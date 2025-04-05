@@ -230,6 +230,57 @@ footer {
   font-size: 16px;
   font-weight: 400;
 }
+.popup {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  z-index: 1000;
+  text-align: center;
+  max-width: 400px;
+  width: 80%;
+}
+
+.popup .close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -35%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -25%);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -25%);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -15%);
+  }
+}
+
+/* Fondo difuminado cuando el popup está activo */
+.blur-background {
+  filter: blur(5px);
+  pointer-events: none;
+}
 
 
 

@@ -14,6 +14,9 @@ window.onload = function () {
   popup.style.display = "block";
   popup.style.animation = "fadeIn 1s ease";
 
+  // Difumina el fondo mientras está visible el popup
+  document.body.classList.add("blur-background");
+
   if (user === "not4dmin") {
     subscriptionInfo.innerText = "Tienes acceso ilimitado.";
   } else if (user === "Guadola") {
@@ -24,7 +27,7 @@ window.onload = function () {
     subscriptionInfo.innerText = `Le quedan ${demoDaysLeft} días de membresía.`;
   }
 
-  // Cerrar automáticamente el popup después de 4 segundos
+  // Cerrar automáticamente a los 4 segundos
   setTimeout(() => {
     closePopup();
   }, 4000);
@@ -36,6 +39,9 @@ function closePopup() {
   setTimeout(() => {
     popup.style.display = "none";
   }, 500);
+
+  // Quita el difuminado del fondo
+  document.body.classList.remove("blur-background");
 }
 
 function logout() {

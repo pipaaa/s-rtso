@@ -9,47 +9,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 <body oncontextmenu="return false" onkeydown="return bloquearInspeccion(event)">
+  <!-- Botones arriba a la derecha -->
   <div class="header-buttons">
     <button onclick="logout()" class="header-btn">Cerrar Sesión</button>
     <button onclick="window.location.href='subscription.html'" class="header-btn">Mi Suscripción</button>
   </div>
 
-  <!-- POPUP de bienvenida -->
+  <!-- POPUP bienvenida -->
   <div class="popup" id="popup">
     <span class="close" onclick="closePopup()">×</span>
     <div id="welcomeMessage"></div>
     <div id="subscriptionInfo"></div>
   </div>
 
-  <!-- Contenido principal -->
+  <!-- CONTENIDO DIFUMINABLE -->
   <div id="main-content">
     <div class="content-container">
       <h2 class="title">En directo!</h2>
 
+      <!-- CONTADOR DE PARTIDOS -->
       <div class="iframe-container">
-        <!-- Contador 1: Real Sociedad -->
+
+        <!-- Real Sociedad -->
         <div class="match-countdown" id="countdownRSO">
           <img id="logoLocalRSO" class="team-logo" />
           <div class="countdown-info">
-            <div id="equiposRSO"></div>
-            <div id="ubicacionRSO"></div>
-            <div id="timerRSO"></div>
+            <div id="equiposRSO" class="equipos"></div>
+            <div id="ubicacionRSO" class="ubicacion"></div>
+            <div id="timerRSO" class="temporizador"></div>
           </div>
           <img id="logoVisitanteRSO" class="team-logo" />
         </div>
 
-        <!-- Contador 2: Athletic -->
+        <!-- Athletic -->
         <div class="match-countdown" id="countdownATH">
           <img id="logoLocalATH" class="team-logo" />
           <div class="countdown-info">
-            <div id="equiposATH"></div>
-            <div id="ubicacionATH"></div>
-            <div id="timerATH"></div>
+            <div id="equiposATH" class="equipos"></div>
+            <div id="ubicacionATH" class="ubicacion"></div>
+            <div id="timerATH" class="temporizador"></div>
           </div>
           <img id="logoVisitanteATH" class="team-logo" />
         </div>
 
-        <!-- Segundo iframe debajo -->
+        <!-- Segundo iframe -->
         <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
       </div>
 
@@ -59,6 +62,7 @@
     </div>
   </div>
 
+  <!-- SCRIPTS -->
   <script src="auth.js"></script>
   <script src="countdown.js"></script>
   <script>

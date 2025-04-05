@@ -9,44 +9,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 <body oncontextmenu="return false" onkeydown="return bloquearInspeccion(event)">
-  <div class="header-buttons">
-    <button onclick="logout()">Cerrar Sesión</button>
-    <button onclick="window.location.href='subscription.html'">Mi Suscripción</button>
-  </div>
-
-  <div class="popup" id="popup">
-    <span class="close" onclick="closePopup()">×</span>
-    <div id="welcomeMessage"></div>
-    <div id="subscriptionInfo"></div>
+  <div class="header">
+    <div class="welcome-section">
+      <span id="welcomeText"></span>
+      <button onclick="logout()">Cerrar Sesión</button>
+    </div>
+    <div class="header-buttons">
+      <button onclick="window.location.href='subscription.html'">Mi Suscripción</button>
+    </div>
   </div>
 
   <div class="content-container">
-    <h2 class="title">En directo!</h2>
-
-    <div class="match-countdown-container">
-      <div class="match-card" id="match-rso">
-        <img id="homeLogoRSO" class="team-logo" src="" alt="Logo local">
-        <div class="match-info">
-          <div id="teamsRSO" class="match-teams">Equipo local - Equipo visitante</div>
-          <div id="locationRSO" class="match-location">Lugar</div>
-          <div id="countdownRSO" class="match-countdown">Cargando...</div>
-        </div>
-        <img id="awayLogoRSO" class="team-logo" src="" alt="Logo visitante">
-      </div>
-
-      <div class="match-card" id="match-ath">
-        <img id="homeLogoATH" class="team-logo" src="" alt="Logo local">
-        <div class="match-info">
-          <div id="teamsATH" class="match-teams">Equipo local - Equipo visitante</div>
-          <div id="locationATH" class="match-location">Lugar</div>
-          <div id="countdownATH" class="match-countdown">Cargando...</div>
-        </div>
-        <img id="awayLogoATH" class="team-logo" src="" alt="Logo visitante">
-      </div>
-    </div>
+    <div class="countdown-container" id="countdowns"></div>
 
     <div class="iframe-container">
-      <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
+      <iframe class="iframe-small" src="https://example.com/stream1"></iframe>
+      <iframe class="iframe-large" src="https://example.com/stream2"></iframe>
     </div>
 
     <div class="private-warning">
@@ -58,10 +36,16 @@
   <script src="countdown.js"></script>
   <script>
     function bloquearInspeccion(e) {
-      if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C"))) {
+      if (e.key === "F12" || (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key))) {
         e.preventDefault();
         return false;
       }
+    }
+
+    const user = sessionStorage.getItem("user");
+    const welcomeText = document.getElementById("welcomeText");
+    if (user && welcomeText) {
+      welcomeText.innerText = `Bienvenid@ a Play View, ${user}`;
     }
   </script>
 </body>

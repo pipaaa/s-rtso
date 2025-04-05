@@ -14,12 +14,19 @@ if (popup && welcomeMessage && subscriptionInfo) {
   // Mostrar mensaje de bienvenida con el nombre del usuario en negrita
   welcomeMessage.innerHTML = `Bienvenid@ a PlayView <strong>${user}</strong>!`;
 
-  // Definir el mensaje de membresía basado en el usuario
+  // Información de la membresía basada en el usuario
   if (user === "not4dmin") {
     subscriptionInfo.innerText = "Tienes acceso ilimitado.";
   } else if (user === "Guadola") {
-    const demoDaysLeft = Math.max(0, Math.ceil((users["Guadola"].expires - Date.now()) / (1000 * 60 * 60 * 24)));
-    subscriptionInfo.innerText = `Te quedan ${demoDaysLeft} días de membresía.`;
+    // Asegurarnos de que 'expires' es un número (timestamp)
+    const userExpires = users["Guadola"]?.expires;
+    if (userExpires) {
+      // Calculamos los días restantes de la membresía
+      const demoDaysLeft = Math.max(0, Math.ceil((userExpires - Date.now()) / (1000 * 60 * 60 * 24)));
+      subscriptionInfo.innerText = `Te quedan ${demoDaysLeft} días de membresía.`;
+    } else {
+      subscriptionInfo.innerText = "No se pudo calcular el tiempo de membresía.";
+    }
   }
 
   // Cerrar el popup automáticamente después de 4 segundos si no se cierra manualmente

@@ -2,19 +2,19 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
   background: url('football-488714.jpg') no-repeat center center fixed;
   background-size: cover;
   backdrop-filter: blur(8px);
   color: white;
+  display: flex;
+  flex-direction: column;
 }
 
-.login-container {
+.login-container, .subscription-container {
   max-width: 400px;
-  margin: 100px auto;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  margin: auto;
+  padding: 30px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   text-align: center;
@@ -43,14 +43,14 @@ button:hover {
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  margin-top: auto;
   background-color: rgba(0, 0, 0, 0.8);
   text-align: center;
   padding: 10px;
+  font-family: 'Poppins', sans-serif;
 }
-.header-buttons-row {
+
+.header-buttons {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -58,7 +58,7 @@ footer {
   gap: 10px;
 }
 
-.header-buttons-row button {
+.header-buttons button {
   padding: 5px 10px;
   font-size: 12px;
   font-family: 'Poppins', sans-serif;
@@ -70,8 +70,65 @@ footer {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.header-buttons-row button:hover {
+.header-buttons button:hover {
   background-color: #0055aa;
   transform: scale(1.05);
 }
 
+.popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+}
+
+.popup .close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.title {
+  text-align: center;
+  color: black;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 80px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.iframe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+}
+
+.iframe-small {
+  width: 90%;
+  height: 200px;
+  border: none;
+  border-radius: 10px;
+}
+
+.iframe-large {
+  width: 90%;
+  height: 540px;
+  border: none;
+  border-radius: 10px;
+}
+
+.private-warning {
+  text-align: center;
+  margin: 50px 0;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}

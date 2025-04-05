@@ -1,5 +1,3 @@
-// auth.js
-
 const user = sessionStorage.getItem("user");
 if (!user) {
   window.location.href = "index.html";
@@ -14,8 +12,7 @@ window.onload = function () {
   popup.style.display = "block";
   popup.style.animation = "fadeIn 1s ease";
 
-  // Difumina el fondo mientras está visible el popup
-  document.body.classList.add("blur-background");
+  document.getElementById("main-content").classList.add("blurred");
 
   if (user === "not4dmin") {
     subscriptionInfo.innerText = "Tienes acceso ilimitado.";
@@ -27,7 +24,6 @@ window.onload = function () {
     subscriptionInfo.innerText = `Le quedan ${demoDaysLeft} días de membresía.`;
   }
 
-  // Cerrar automáticamente a los 4 segundos
   setTimeout(() => {
     closePopup();
   }, 4000);
@@ -40,8 +36,7 @@ function closePopup() {
     popup.style.display = "none";
   }, 500);
 
-  // Quita el difuminado del fondo
-  document.body.classList.remove("blur-background");
+  document.getElementById("main-content").classList.remove("blurred");
 }
 
 function logout() {

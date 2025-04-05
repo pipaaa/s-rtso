@@ -9,60 +9,42 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 <body oncontextmenu="return false" onkeydown="return bloquearInspeccion(event)">
-  <!-- Botones arriba a la derecha -->
   <div class="header-buttons">
-    <button onclick="logout()" class="header-btn">Cerrar Sesión</button>
-    <button onclick="window.location.href='subscription.html'" class="header-btn">Mi Suscripción</button>
+    <button onclick="logout()">Cerrar Sesión</button>
+    <button style="margin-left: 10px;" onclick="window.location.href='subscription.html'">Mi Suscripción</button>
   </div>
 
-  <!-- Popup de bienvenida -->
   <div class="popup" id="popup">
     <span class="close" onclick="closePopup()">×</span>
     <div id="welcomeMessage"></div>
     <div id="subscriptionInfo"></div>
   </div>
 
-  <!-- Contenido principal difuminable -->
-  <div id="main-content">
-    <div class="content-container">
-      <h2 class="title">En directo!</h2>
+  <div class="content-container">
+    <h2 class="title">En directo!</h2>
 
-      <!-- Contadores -->
-      <div class="iframe-container">
-        <!-- Contador Real Sociedad -->
-        <div class="match-countdown" id="countdownRSO" style="display: flex;">
-          <img id="logoLocalRSO" class="team-logo" />
-          <div class="countdown-info">
-            <div id="equiposRSO" class="equipos"></div>
-            <div id="ubicacionRSO" class="ubicacion"></div>
-            <div id="timerRSO" class="temporizador"></div>
-          </div>
-          <img id="logoVisitanteRSO" class="team-logo" />
-        </div>
-
-        <!-- Contador Athletic -->
-        <div class="match-countdown" id="countdownATH" style="display: flex;">
-          <img id="logoLocalATH" class="team-logo" />
-          <div class="countdown-info">
-            <div id="equiposATH" class="equipos"></div>
-            <div id="ubicacionATH" class="ubicacion"></div>
-            <div id="timerATH" class="temporizador"></div>
-          </div>
-          <img id="logoVisitanteATH" class="team-logo" />
-        </div>
-
-        <!-- Iframe de contenido -->
-        <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
+    <div class="countdown-container">
+      <div class="countdown-box" id="countdownRS">
+        <div class="countdown-teams" id="teamsRS"></div>
+        <div class="countdown-time" id="timerRS"></div>
+        <div class="countdown-location" id="locationRS"></div>
       </div>
-
-      <!-- Aviso de privacidad -->
-      <div class="private-warning">
-        <p>Este contenido es privado. No se puede difundir sin autorización.</p>
+      <div class="countdown-box" id="countdownATH">
+        <div class="countdown-teams" id="teamsATH"></div>
+        <div class="countdown-time" id="timerATH"></div>
+        <div class="countdown-location" id="locationATH"></div>
       </div>
+    </div>
+
+    <div class="iframe-container">
+      <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
+    </div>
+
+    <div class="private-warning">
+      <p>Este contenido es privado. No se puede difundir sin autorización.</p>
     </div>
   </div>
 
-  <!-- Scripts -->
   <script src="auth.js"></script>
   <script src="countdown.js"></script>
   <script>

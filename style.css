@@ -2,34 +2,52 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  background: url('fotofondo.jpg') no-repeat center center fixed;
+  background: url('football-488714.jpg') no-repeat center center fixed;
   background-size: cover;
   backdrop-filter: blur(8px);
   color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .login-container, .subscription-container {
   max-width: 400px;
-  margin: 100px auto;
+  margin: auto;
   padding: 30px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   text-align: center;
 }
 
-input, button {
+input, .login-button {
   display: block;
   width: 100%;
   margin: 10px 0;
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
   border: none;
+  font-family: 'Poppins', sans-serif;
 }
 
-button {
-  background-color: #003366;
+.login-button {
+  background: linear-gradient(135deg, #003366, #0055aa);
   color: white;
+  font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.login-button:hover {
+  background: linear-gradient(135deg, #002244, #004488);
+  transform: scale(1.03);
+}
+
+.login-button:active {
+  background: linear-gradient(135deg, #001122, #003377);
+  transform: scale(0.97);
 }
 
 footer {
@@ -39,6 +57,7 @@ footer {
   background-color: rgba(0, 0, 0, 0.8);
   text-align: center;
   padding: 10px;
+  font-size: 14px;
 }
 
 .header-buttons {

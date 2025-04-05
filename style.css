@@ -4,7 +4,7 @@ body {
   padding: 0;
   background: url('football-488714.jpg') no-repeat center center fixed;
   background-size: cover;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px); /* Difuminado de fondo */
   color: white;
   min-height: 100vh;
   display: flex;
@@ -71,7 +71,7 @@ footer {
   padding: 20px;
   border-radius: 10px;
   display: none;
-  z-index: 9999; /* Asegura que el popup esté por encima del difuminado */
+  z-index: 9999; /* Popup por encima del fondo difuminado */
 }
 
 .popup .close {
@@ -127,9 +127,9 @@ footer {
   content: "";
   position: fixed;
   inset: 0;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /* Difuminado del fondo */
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 998;
+  z-index: 998; /* Fondo difuminado */
   animation: fadeInBlur 0.5s ease-in-out forwards;
 }
 
@@ -182,12 +182,12 @@ body.blur {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.8); /* El fondo del popup no debe ser difuminado */
   color: white;
   padding: 20px;
   border-radius: 10px;
   display: none;
-  z-index: 9999; /* Asegura que el popup esté por encima del difuminado */
+  z-index: 9999; /* Popup por encima del difuminado */
 }
 
 .popup .close {

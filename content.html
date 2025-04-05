@@ -9,22 +9,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 <body oncontextmenu="return false" onkeydown="return bloquearInspeccion(event)">
-  <div class="header">
-    <div class="welcome-section">
+  <div class="header-buttons" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 10px 20px;">
+    <div style="color: white; font-size: 14px;">
       <span id="welcomeText"></span>
-      <button onclick="logout()">Cerrar Sesión</button>
+      <button onclick="logout()" style="margin-left: 10px;">Cerrar sesión</button>
     </div>
-    <div class="header-buttons">
-      <button onclick="window.location.href='subscription.html'">Mi Suscripción</button>
-    </div>
+    <button onclick="window.location.href='subscription.html'">Mi suscripción</button>
   </div>
 
   <div class="content-container">
-    <div class="countdown-container" id="countdowns"></div>
+    <h2 class="title">En directo!</h2>
+
+    <div id="countdownContainer" class="countdown-container"></div>
 
     <div class="iframe-container">
-      <iframe class="iframe-small" src="https://example.com/stream1"></iframe>
-      <iframe class="iframe-large" src="https://example.com/stream2"></iframe>
+      <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
     </div>
 
     <div class="private-warning">
@@ -35,17 +34,14 @@
   <script src="auth.js"></script>
   <script src="countdown.js"></script>
   <script>
+    const user = sessionStorage.getItem("user");
+    document.getElementById("welcomeText").innerText = `Bienvenid@ a Play View, ${user}`;
+    
     function bloquearInspeccion(e) {
-      if (e.key === "F12" || (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key))) {
+      if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C"))) {
         e.preventDefault();
         return false;
       }
-    }
-
-    const user = sessionStorage.getItem("user");
-    const welcomeText = document.getElementById("welcomeText");
-    if (user && welcomeText) {
-      welcomeText.innerText = `Bienvenid@ a Play View, ${user}`;
     }
   </script>
 </body>

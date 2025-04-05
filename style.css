@@ -60,9 +60,10 @@ footer {
 }
 
 .header-buttons button {
-  font-size: 16px;
-  padding: 10px 16px;
+  font-size: 20px;
+  padding: 14px 20px;
   width: auto;
+  border-radius: 10px;
 }
 
 .popup {

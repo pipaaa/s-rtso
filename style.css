@@ -15,11 +15,14 @@ body {
 .login-container, .subscription-container {
   max-width: 400px;
   margin: auto;
-  padding: 30px; /* Simétrico: 30px en todos los lados */
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 45px; /* Ajuste visual: más espacio a la derecha */
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); /* Sombra suave */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
 }
 
 input, .login-button {

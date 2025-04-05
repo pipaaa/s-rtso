@@ -23,6 +23,11 @@ window.onload = function () {
     );
     subscriptionInfo.innerText = `Le quedan ${demoDaysLeft} días de membresía.`;
   }
+
+  // Cerrar automáticamente el popup después de 4 segundos
+  setTimeout(() => {
+    closePopup();
+  }, 4000);
 };
 
 function closePopup() {

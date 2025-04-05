@@ -23,111 +23,9 @@
   <div class="content-container">
     <h2 class="title">En directo!</h2>
 
-    <!-- CONTADOR AQUÍ -->
-    <div id="match-countdowns" class="countdown-container"></div>
-    <script>
-      const matches = {
-        real: [
-          { local: "Las Palmas", visitante: "Real Sociedad", fecha: "2025-04-06T14:00:00", estadio: "Fuera" },
-          { local: "Real Sociedad", visitante: "Mallorca", fecha: "2025-04-12T14:00:00", estadio: "En casa" },
-          { local: "Villarreal", visitante: "Real Sociedad", fecha: "2025-04-20T16:15:00", estadio: "Fuera" },
-          { local: "Alavés", visitante: "Real Sociedad", fecha: "2025-04-27T21:30:00", estadio: "Fuera" },
-          { local: "Athletic", visitante: "Real Sociedad", fecha: "2025-05-04", estadio: "Fuera" },
-          { local: "Atlético", visitante: "Real Sociedad", fecha: "2025-05-11", estadio: "Fuera" },
-          { local: "Real Sociedad", visitante: "Celta", fecha: "2025-05-14", estadio: "En casa" },
-          { local: "Real Sociedad", visitante: "Girona", fecha: "2025-05-18", estadio: "En casa" },
-          { local: "Real Madrid", visitante: "Real Sociedad", fecha: "2025-05-25", estadio: "Fuera" },
-        ],
-        athletic: [
-          { local: "Villarreal", visitante: "Athletic", fecha: "2025-04-06T21:00:00", estadio: "Fuera" },
-          { local: "Rangers", visitante: "Athletic", fecha: "2025-04-10T21:00:00", estadio: "Fuera" },
-          { local: "Athletic", visitante: "Rangers", fecha: "2025-04-17T21:00:00", estadio: "En casa" },
-          { local: "Athletic", visitante: "Rayo", fecha: "2025-04-13T21:00:00", estadio: "En casa" },
-          { local: "Real Madrid", visitante: "Athletic", fecha: "2025-04-20T21:00:00", estadio: "Fuera" },
-          { local: "Athletic", visitante: "Las Palmas", fecha: "2025-04-26T19:00:00", estadio: "En casa" },
-          { local: "Athletic", visitante: "Real Sociedad", fecha: "2025-05-04", estadio: "En casa" },
-          { local: "Athletic", visitante: "Alavés", fecha: "2025-05-11", estadio: "En casa" },
-          { local: "Getafe", visitante: "Athletic", fecha: "2025-05-14", estadio: "Fuera" },
-          { local: "Valencia", visitante: "Athletic", fecha: "2025-05-18", estadio: "Fuera" },
-          { local: "Athletic", visitante: "Barcelona", fecha: "2025-05-25", estadio: "En casa" },
-        ],
-      };
+    <!-- CONTADOR DE PARTIDOS -->
+    <div id="match-countdowns" class="match-countdowns"></div>
 
-      function getNextMatch(equipo) {
-        const now = new Date();
-        return equipo.find(m => new Date(m.fecha) >= now);
-      }
-
-      function formatCountdown(fecha) {
-        const ahora = new Date();
-        const partido = new Date(fecha);
-        const diff = partido - ahora;
-
-        if (diff <= 0 && diff >= -105 * 60 * 1000) return "EN DIRECTO!";
-        if (diff <= 0 && fecha.length <= 10) return "HOY!";
-
-        const totalSeconds = Math.floor(diff / 1000);
-        const d = Math.floor(totalSeconds / 86400);
-        const h = Math.floor((totalSeconds % 86400) / 3600);
-        const m = Math.floor((totalSeconds % 3600) / 60);
-        const s = totalSeconds % 60;
-
-        return `${d}d ${h}h ${m}m ${s}s`;
-      }
-
-      function renderCountdowns() {
-        const contenedor = document.getElementById("match-countdowns");
-        contenedor.innerHTML = "";
-
-        const partidos = [
-          { equipo: "Real Sociedad", logo: "logorso.png", match: getNextMatch(matches.real) },
-          { equipo: "Athletic", logo: "logoath.png", match: getNextMatch(matches.athletic) }
-        ];
-
-        partidos.forEach(p => {
-          if (!p.match) return;
-
-          const enCasa = p.match.local.includes(p.equipo);
-          const rival = enCasa ? p.match.visitante : p.match.local;
-          const logoIzq = enCasa ? p.logo : "default.png";
-          const logoDer = !enCasa ? p.logo : "default.png";
-
-          const html = `
-            <div class="countdown-box">
-              <div class="teams">
-                <img src="${enCasa ? p.logo : 'default.png'}" class="logo" />
-                <span>${p.match.local}</span>
-                <span>vs</span>
-                <span>${p.match.visitante}</span>
-                <img src="${!enCasa ? p.logo : 'default.png'}" class="logo" />
-              </div>
-              <div class="location">Se juega: ${p.match.estadio}</div>
-              <div class="timer" id="timer-${p.equipo.replace(/\s/g, '')}">...</div>
-            </div>
-          `;
-          contenedor.innerHTML += html;
-        });
-
-        updateCountdowns();
-      }
-
-      function updateCountdowns() {
-        const real = getNextMatch(matches.real);
-        const athletic = getNextMatch(matches.athletic);
-
-        if (real) {
-          document.getElementById("timer-RealSociedad").innerText = formatCountdown(real.fecha);
-        }
-        if (athletic) {
-          document.getElementById("timer-Athletic").innerText = formatCountdown(athletic.fecha);
-        }
-      }
-
-      renderCountdowns();
-      setInterval(updateCountdowns, 1000);
-    </script>
-
-    <!-- SOLO UN IFRAME AHORA -->
     <div class="iframe-container">
       <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
     </div>
@@ -138,6 +36,7 @@
   </div>
 
   <script src="auth.js"></script>
+  <script src="countdown.js"></script>
   <script>
     function bloquearInspeccion(e) {
       if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C"))) {

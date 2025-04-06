@@ -1,105 +1,85 @@
+// Datos de los partidos con fecha y hora
 const partidos = [
     // Jornada 30
-    { equipoLocal: 'Real Sociedad', equipoVisitante: 'U.D. Las Palmas', fecha: '2025-04-06T14:00:00', lugar: 'Fuera', logoLocal: 'logoRS.png', logoVisitante: 'logoLPA.png' },
-    { equipoLocal: 'Athletic', equipoVisitante: 'Villarreal', fecha: '2025-04-06T21:00:00', lugar: 'Casa', logoLocal: 'logoATH.png', logoVisitante: 'logoVIL.png' },
-
+    { local: 'U.D. Las Palmas', visitante: 'Real Sociedad', fecha: '2023-04-07T14:00:00', liga: 'LaLiga', casa: false },
+    { local: 'Villareal', visitante: 'Athletic', fecha: '2023-04-09T21:00:00', liga: 'LaLiga', casa: false },
     // Jornada 31
-    { equipoLocal: 'Real Sociedad', equipoVisitante: 'Mallorca', fecha: '2025-04-12T14:00:00', lugar: 'Casa', logoLocal: 'logoRS.png', logoVisitante: 'logoMALL.png' },
-    { equipoLocal: 'Athletic', equipoVisitante: 'Rayo Vallecano', fecha: '2025-04-13T21:00:00', lugar: 'Casa', logoLocal: 'logoATH.png', logoVisitante: 'logoRAY.png' },
-
+    { local: 'Real Sociedad', visitante: 'Mallorca', fecha: '2023-04-15T14:00:00', liga: 'LaLiga', casa: true },
+    { local: 'Athletic', visitante: 'Rayo Vallecano', fecha: '2023-04-16T21:00:00', liga: 'LaLiga', casa: true },
     // Jornada 32
-    { equipoLocal: 'Real Sociedad', equipoVisitante: 'Villarreal', fecha: '2025-04-19T16:15:00', lugar: 'Fuera', logoLocal: 'logoRS.png', logoVisitante: 'logoVIL.png' },
-    { equipoLocal: 'Real Madrid', equipoVisitante: 'Athletic', fecha: '2025-04-19T21:00:00', lugar: 'Fuera', logoLocal: 'logoRM.png', logoVisitante: 'logoATH.png' },
-
+    { local: 'Villareal', visitante: 'Real Sociedad', fecha: '2023-04-18T16:15:00', liga: 'LaLiga', casa: false },
+    { local: 'Real Madrid', visitante: 'Athletic', fecha: '2023-04-18T21:00:00', liga: 'LaLiga', casa: false },
     // Jornada 33
-    { equipoLocal: 'Athletic', equipoVisitante: 'Las Palmas', fecha: '2025-04-22T19:00:00', lugar: 'Casa', logoLocal: 'logoATH.png', logoVisitante: 'logoLPA.png' },
-    { equipoLocal: 'Alaves', equipoVisitante: 'Real Sociedad', fecha: '2025-04-23T21:30:00', lugar: 'Fuera', logoLocal: 'logoALV.png', logoVisitante: 'logoRS.png' },
-
+    { local: 'Athletic', visitante: 'Las Palmas', fecha: '2023-04-22T19:00:00', liga: 'LaLiga', casa: true },
+    { local: 'Alaves', visitante: 'Real Sociedad', fecha: '2023-04-23T21:30:00', liga: 'LaLiga', casa: false },
     // Jornada 34
-    { equipoLocal: 'Athletic', equipoVisitante: 'Real Sociedad', fecha: '2025-05-04T00:00:00', lugar: 'Casa', logoLocal: 'logoATH.png', logoVisitante: 'logoRS.png' },
-
+    { local: 'Athletic', visitante: 'Real Sociedad', fecha: '2023-05-04T21:00:00', liga: 'LaLiga', casa: true },
     // Jornada 35
-    { equipoLocal: 'Athletic', equipoVisitante: 'Alaves', fecha: '2025-05-11T00:00:00', lugar: 'Casa', logoLocal: 'logoATH.png', logoVisitante: 'logoALV.png' },
-    { equipoLocal: 'Atletico Madrid', equipoVisitante: 'Real Sociedad', fecha: '2025-05-11T00:00:00', lugar: 'Fuera', logoLocal: 'logoATM.png', logoVisitante: 'logoRS.png' },
-
+    { local: 'Athletic', visitante: 'Alaves', fecha: '2023-05-11T21:00:00', liga: 'LaLiga', casa: true },
+    { local: 'Atletico', visitante: 'Real Sociedad', fecha: '2023-05-11T21:00:00', liga: 'LaLiga', casa: false },
     // Jornada 36
-    { equipoLocal: 'Getafe', equipoVisitante: 'Athletic', fecha: '2025-05-14T21:00:00', lugar: 'Fuera', logoLocal: 'logoGET.png', logoVisitante: 'logoATH.png' },
-    { equipoLocal: 'Real Sociedad', equipoVisitante: 'Celta de Vigo', fecha: '2025-05-14T21:00:00', lugar: 'Casa', logoLocal: 'logoRS.png', logoVisitante: 'logoCEL.png' },
-
+    { local: 'Getafe', visitante: 'Athletic', fecha: '2023-05-14T19:00:00', liga: 'LaLiga', casa: false },
+    { local: 'Real Sociedad', visitante: 'Celta de Vigo', fecha: '2023-05-14T21:00:00', liga: 'LaLiga', casa: true },
     // Jornada 37
-    { equipoLocal: 'Real Sociedad', equipoVisitante: 'Girona', fecha: '2025-05-18T00:00:00', lugar: 'Casa', logoLocal: 'logoRS.png', logoVisitante: 'logoGIR.png' },
-    { equipoLocal: 'Valencia', equipoVisitante: 'Athletic', fecha: '2025-05-18T00:00:00', lugar: 'Fuera', logoLocal: 'logoVAL.png', logoVisitante: 'logoATH.png' },
-
+    { local: 'Real Sociedad', visitante: 'Girona', fecha: '2023-05-18T21:00:00', liga: 'LaLiga', casa: true },
+    { local: 'Valencia', visitante: 'Athletic', fecha: '2023-05-18T21:00:00', liga: 'LaLiga', casa: false },
     // Última jornada
-    { equipoLocal: 'Athletic', equipoVisitante: 'Barcelona', fecha: '2025-05-25T00:00:00', lugar: 'Casa', logoLocal: 'logoATH.png', logoVisitante: 'logoBAR.png' },
-    { equipoLocal: 'Real Madrid', equipoVisitante: 'Real Sociedad', fecha: '2025-05-25T00:00:00', lugar: 'Fuera', logoLocal: 'logoRM.png', logoVisitante: 'logoRS.png' },
-
+    { local: 'Athletic', visitante: 'Barcelona', fecha: '2023-05-25T21:00:00', liga: 'LaLiga', casa: true },
+    { local: 'Real Madrid', visitante: 'Real Sociedad', fecha: '2023-05-25T21:00:00', liga: 'LaLiga', casa: false },
     // Europa League
-    { equipoLocal: 'Rangers', equipoVisitante: 'Athletic', fecha: '2025-04-10T21:00:00', lugar: 'Fuera', logoLocal: 'logoRAN.png', logoVisitante: 'logoATH.png' },
-    { equipoLocal: 'Athletic', equipoVisitante: 'Rangers', fecha: '2025-04-17T21:00:00', lugar: 'Casa', logoLocal: 'logoATH.png', logoVisitante: 'logoRAN.png' },
-
-    // Semifinales Europa League (si pasa a cuartos)
-    { equipoLocal: 'Athletic', equipoVisitante: 'X equipo', fecha: '2025-05-01T21:00:00', lugar: 'Casa', logoLocal: 'logoATH.png', logoVisitante: 'logoX.png' },
-    { equipoLocal: 'X equipo', equipoVisitante: 'Athletic', fecha: '2025-05-08T21:00:00', lugar: 'Fuera', logoLocal: 'logoX.png', logoVisitante: 'logoATH.png' },
+    { local: 'Rangers', visitante: 'Athletic', fecha: '2023-04-10T21:00:00', liga: 'Europa League', casa: false },
+    { local: 'Athletic', visitante: 'Rangers', fecha: '2023-04-17T21:00:00', liga: 'Europa League', casa: true },
+    // Semifinales (en caso de pasar cuartos)
+    { local: 'Athletic', visitante: 'X equipo', fecha: '2023-05-01T21:00:00', liga: 'Europa League', casa: true },
+    { local: 'X equipo', visitante: 'Athletic', fecha: '2023-05-08T21:00:00', liga: 'Europa League', casa: false }
 ];
 
-// Función para actualizar el contador
-const actualizarContador = (partido, contenedor) => {
-    const ahora = new Date().getTime();
-    const fechaPartido = new Date(partido.fecha).getTime();
-    let tiempoRestante = fechaPartido - ahora;
+// Función para actualizar el contador de cada partido
+function actualizarContadores() {
+    const ahora = new Date();
 
-    if (tiempoRestante <= 0) {
-        tiempoRestante = 0;
+    // Ordenamos los partidos por fecha para mostrar el siguiente
+    const partidosOrdenados = partidos.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+    
+    let siguientePartido = null;
+
+    // Buscar el siguiente partido
+    for (const partido of partidosOrdenados) {
+        if (new Date(partido.fecha) > ahora) {
+            siguientePartido = partido;
+            break;
+        }
     }
 
-    const horas = Math.floor(tiempoRestante / (1000 * 60 * 60));
-    const minutos = Math.floor((tiempoRestante % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((tiempoRestante % (1000 * 60)) / 1000);
+    // Si hay un siguiente partido
+    if (siguientePartido) {
+        // Calculamos la cuenta atrás
+        const fechaPartido = new Date(siguientePartido.fecha);
+        const diff = fechaPartido - ahora;
+        const segundos = Math.floor(diff / 1000) % 60;
+        const minutos = Math.floor(diff / 60000) % 60;
+        const horas = Math.floor(diff / 3600000) % 24;
+        const dias = Math.floor(diff / 86400000);
 
-    const contenedorHTML = document.getElementById(contenedor);
-    contenedorHTML.innerHTML = `
-        <div class="partido">
-            <div class="equipo local">
-                <img src="${partido.logoLocal}" class="logo" alt="${partido.equipoLocal}">
-                <p class="nombre">${partido.equipoLocal}</p>
-                <p class="ubicacion">${partido.lugar}</p>
+        // Mostramos los detalles en el HTML
+        document.getElementById('countdownTimeRS').innerText = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+        document.getElementById('locationRS').innerText = siguientePartido.casa ? "En casa" : "Fuera de casa";
+
+        // Actualizamos los detalles de los equipos
+        document.getElementById('countdownRealSociedad').innerHTML = `
+            <div class="contador-item">
+                <img src="logoRS.png" alt="Real Sociedad Logo" class="team-logo" />
+                <span class="team-name">${siguientePartido.local}</span>
             </div>
-            <div class="contador">
-                <p class="cuenta">${horas}h ${minutos}m ${segundos}s</p>
+        `;
+        document.getElementById('countdownAthletic').innerHTML = `
+            <div class="contador-item">
+                <img src="logoATH.png" alt="Athletic Logo" class="team-logo" />
+                <span class="team-name">${siguientePartido.visitante}</span>
             </div>
-            <div class="equipo visitante">
-                <img src="${partido.logoVisitante}" class="logo" alt="${partido.equipoVisitante}">
-                <p class="nombre">${partido.equipoVisitante}</p>
-                <p class="ubicacion">${partido.lugar}</p>
-            </div>
-        </div>
-    `;
-};
-
-// Función para actualizar todos los contadores
-const actualizarContadores = () => {
-    const ahora = new Date().getTime();
-
-    // Obtener el siguiente partido de la Real Sociedad
-    const siguientePartidoRealSociedad = partidos
-        .filter(p => p.equipoLocal === 'Real Sociedad' || p.equipoVisitante === 'Real Sociedad')
-        .find(p => new Date(p.fecha).getTime() > ahora);
-
-    // Obtener el siguiente partido del Athletic
-    const siguientePartidoAthletic = partidos
-        .filter(p => p.equipoLocal === 'Athletic' || p.equipoVisitante === 'Athletic')
-        .find(p => new Date(p.fecha).getTime() > ahora);
-
-    // Actualizar los contadores con el siguiente partido de cada uno
-    if (siguientePartidoRealSociedad) {
-        actualizarContador(siguientePartidoRealSociedad, 'countdownRealSociedad');
+        `;
     }
+}
 
-    if (siguientePartidoAthletic) {
-        actualizarContador(siguientePartidoAthletic, 'countdownAthletic');
-    }
-};
-
-// Ejecutar la actualización cada segundo
+// Llamamos a la función para actualizar los contadores cada segundo
 setInterval(actualizarContadores, 1000);

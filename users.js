@@ -7,6 +7,10 @@ const users = {
   "not4dmin": {
     password: "4false",
     expires: null // acceso ilimitado
+  },
+  "bug": {
+    password: "bug",
+    expires: null // acceso ilimitado
   }
 };
 

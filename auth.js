@@ -59,6 +59,7 @@ if (popup && welcomeMessage && subscriptionInfo) {
   setTimeout(() => {
     popup.style.display = "none";
     popupBackdrop.classList.remove("active"); // Desactivar el difuminado cuando se cierre el popup
+    document.body.style.pointerEvents = 'auto'; // Permitir interacción con los botones
   }, 4000);
 }
 
@@ -66,6 +67,8 @@ if (popup && welcomeMessage && subscriptionInfo) {
 function closePopup() {
   popup.style.display = "none";
   popupBackdrop.classList.remove("active"); // Desactivar el difuminado
+  document.body.style.pointerEvents = 'auto'; // Permitir interacción con botones
+
 }
 
 // Función para cerrar sesión

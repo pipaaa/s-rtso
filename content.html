@@ -9,9 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <!-- Fondo difuminado -->
-  <div id="popupBackdrop" class="blurred"></div>
-
   <div class="header-buttons">
     <button onclick="logout()" style="font-size: 10px; padding: 5px 8px;">Cerrar Sesión</button>
     <button onclick="window.location.href='subscription.html'" style="font-size: 10px; padding: 5px 8px;">Mi Suscripción</button>
@@ -26,35 +23,16 @@
   <h2 class="title">En directo!</h2>
 
   <div class="iframe-container">
-    <iframe src="https://example.com/stream1" class="iframe-small"></iframe>
-    <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
-  </div>
-
-  <div id="realSociedadCountdown" class="countdown-container">
-    <div class="countdown">
-      <img src="logoRSO.png" class="team-logo">
-      <div class="countdown-info">
-        <div id="realSociedadGame"></div>
-        <div id="realSociedadTimer"></div>
-      </div>
-    </div>
-  </div>
-
-  <div id="athleticCountdown" class="countdown-container">
-    <div class="countdown">
-      <img src="logoATH.png" class="team-logo">
-      <div class="countdown-info">
-        <div id="athleticGame"></div>
-        <div id="athleticTimer"></div>
-      </div>
-    </div>
+    <!-- Aquí coloco los dos contadores de los partidos -->
+    <div id="countdownRealSociedad" class="countdown-container"></div>
+    <div id="countdownAthletic" class="countdown-container"></div>
   </div>
 
   <div class="private-warning">
     <p>Este contenido es privado. No se puede difundir sin autorización.</p>
   </div>
 
-  <script src="countdown.js"></script>
   <script src="auth.js"></script>
+  <script src="countdown.js"></script> <!-- Agregamos el archivo JS para la cuenta atrás -->
 </body>
 </html>

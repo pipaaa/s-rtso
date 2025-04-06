@@ -35,7 +35,6 @@ if (popup && welcomeMessage && subscriptionInfo) {
   
   // Activar el difuminado de fondo
   popupBackdrop.classList.add("active");
-  document.body.style.pointerEvents = "none"; 
 
   // Mostrar mensaje de bienvenida con el nombre del usuario en negrita
   welcomeMessage.innerHTML = `Bienvenid@ a PlayView <strong>${user}</strong>!`;
@@ -60,7 +59,7 @@ if (popup && welcomeMessage && subscriptionInfo) {
   setTimeout(() => {
     popup.style.display = "none";
     popupBackdrop.classList.remove("active"); // Desactivar el difuminado cuando se cierre el popup
-    document.body.style.pointerEvents = 'auto'; // Permitir interacción con los botones
+    popupBackdrop.style.display = "none"; // Ocultar el fondo difuminado
   }, 4000);
 }
 
@@ -68,8 +67,7 @@ if (popup && welcomeMessage && subscriptionInfo) {
 function closePopup() {
   popup.style.display = "none";
   popupBackdrop.classList.remove("active"); // Desactivar el difuminado
-  document.body.style.pointerEvents = 'auto'; // Permitir interacción con botones
-
+  popupBackdrop.style.display = "none"; // Ocultar el fondo difuminado
 }
 
 // Función para cerrar sesión

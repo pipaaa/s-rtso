@@ -12,8 +12,8 @@ body {
 }
 
 .login-container, .subscription-container {
-  max-width: 400px;
-  margin: auto;
+  width: 400px;
+  margin:auto;
   padding: 30px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
@@ -22,8 +22,8 @@ body {
 
 input, button {
   display: block;
-  width: 100%;
-  margin: 10px 0;
+  width: 80%;
+  margin:10px auto;
   padding: 10px;
   border-radius: 8px;
   border: none;
@@ -278,6 +278,7 @@ footer {
   backdrop-filter: blur(6px);
   transition: all 0.3s ease;
   animation: fadeSlideUp 0.7s ease-out both;
+  margin: auto auto;
 }
 
 .countdown-container:hover {

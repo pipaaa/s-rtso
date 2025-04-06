@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <!-- Fondo difuminado -->
+  <div id="popupBackdrop" class="blurred"></div>
+
   <div class="header-buttons">
     <button onclick="logout()" style="font-size: 10px; padding: 5px 8px;">Cerrar Sesión</button>
     <button onclick="window.location.href='subscription.html'" style="font-size: 10px; padding: 5px 8px;">Mi Suscripción</button>
@@ -23,9 +26,9 @@
   <h2 class="title">En directo!</h2>
 
   <div class="iframe-container">
-    <!-- Aquí coloco los dos contadores de los partidos -->
-    <div id="countdownRealSociedad" class="countdown-container"></div>
-    <div id="countdownAthletic" class="countdown-container"></div>
+     <div id="countdownRealSociedad" class="contador"></div>
+    <div id="countdownAthletic" class="contador"></div>
+    <iframe src="https://example.com/stream2" class="iframe-large"></iframe>
   </div>
 
   <div class="private-warning">
@@ -33,6 +36,5 @@
   </div>
 
   <script src="auth.js"></script>
-  <script src="countdown.js"></script> <!-- Agregamos el archivo JS para la cuenta atrás -->
 </body>
 </html>

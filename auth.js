@@ -35,6 +35,7 @@ if (popup && welcomeMessage && subscriptionInfo) {
   
   // Activar el difuminado de fondo
   popupBackdrop.classList.add("active");
+  document.body.style.pointerEvents = "none"; 
 
   // Mostrar mensaje de bienvenida con el nombre del usuario en negrita
   welcomeMessage.innerHTML = `Bienvenid@ a PlayView <strong>${user}</strong>!`;

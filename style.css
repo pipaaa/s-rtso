@@ -235,7 +235,17 @@ footer {
   transform: scale(1.05);
 }
 
-/* Fade + Slide in */
+.main-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+  max-width: 1300px;
+  padding: 0 40px;
+}
+
+/* Animaciones */
 @keyframes fadeSlideUp {
   0% {
     opacity: 0;
@@ -247,7 +257,6 @@ footer {
   }
 }
 
-/* Pulsating effect */
 @keyframes pulseGlow {
   0%, 100% {
     text-shadow: 0 0 8px rgba(0,255,255,0.5);
@@ -262,8 +271,8 @@ footer {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   padding: 30px 40px;
-  width: 90%;
-  max-width: 600px;
+  width: 100%;
+  max-width: 500px;
   text-align: center;
   box-shadow: 0 10px 25px rgba(0,0,0,0.6);
   backdrop-filter: blur(6px);

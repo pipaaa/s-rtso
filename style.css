@@ -120,3 +120,117 @@ footer {
   margin: 50px 0;
   color: white;
 }
+
+/* Fondo difuminado cuando el popup está activo */
+.blurred::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px); /* Aplica el difuminado */
+  background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  z-index: 1000;
+  opacity: 0; /* Comienza oculto */
+  transition: opacity 0.5s ease-in-out; /* Transición suave */
+}
+
+.blurred.active::before {
+  opacity: 1; /* Se hace visible cuando se agrega la clase .active */
+}
+
+/* Estilo del popup */
+#popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #111;
+  color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  z-index: 1001; /* más alto que el difuminado */
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  max-width: 90%;
+}
+
+#popup strong {
+  font-weight: bold;
+}
+
+#popup button {
+  margin-top: 15px;
+  background-color: #333;
+  border: none;
+  padding: 8px 16px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+#popup button:hover {
+  background-color: #555;
+  transform: scale(1.05);
+}
+
+/* Fondo difuminado cuando el popup está activo */
+.blurred {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Activa el difuminado cuando el popup está visible */
+.blurred.active {
+  opacity: 1;
+}
+
+/* Estilo del popup */
+#popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #111;
+  color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  z-index: 1001; /* más alto que el difuminado */
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  max-width: 90%;
+}
+
+#popup strong {
+  font-weight: bold;
+}
+
+#popup button {
+  margin-top: 15px;
+  background-color: #333;
+  border: none;
+  padding: 8px 16px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+#popup button:hover {
+  background-color: #555;
+  transform: scale(1.05);
+}

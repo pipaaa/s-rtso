@@ -234,48 +234,28 @@ footer {
   background-color: #555;
   transform: scale(1.05);
 }
-.partido {
+/* Estilo para el contenedor de la cuenta atrás */
+.countdown-container {
+    width: 100%;
+    height: 100%; /* El mismo tamaño que el iframe */
+    background-color: #111;
+    color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
-}
-
-.equipo {
-    display: flex;
-    align-items: center;
-}
-
-.equipo .logo {
-    width: 40px;
-    height: auto;
-    margin-right: 10px;
-}
-
-.contador {
-    text-align: center;
     font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* Estilo para la cuenta atrás */
+.countdown-container .cuenta {
+    font-size: 2rem;
     color: #FF0;
 }
 
-.contador p {
-    margin: 5px 0;
-}
-
-.ubicacion {
+.countdown-container .ubicacion {
     font-size: 1rem;
     color: #ccc;
-}
-
-@media (max-width: 768px) {
-    .partido {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .equipo {
-        margin-bottom: 10px;
-    }
-    .contador {
-        margin-bottom: 10px;
-    }
 }

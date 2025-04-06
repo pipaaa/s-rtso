@@ -234,28 +234,49 @@ footer {
   background-color: #555;
   transform: scale(1.05);
 }
-/* Estilo para el contenedor de la cuenta atrás */
-.countdown-container {
-    width: 100%;
-    height: 100%; /* El mismo tamaño que el iframe */
-    background-color: #111;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    border-radius: 8px;
+/* Contador en general */
+.contador {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-/* Estilo para la cuenta atrás */
-.countdown-container .cuenta {
-    font-size: 2rem;
-    color: #FF0;
+.contador-item {
+  display: flex;
+  align-items: center;
 }
 
-.countdown-container .ubicacion {
-    font-size: 1rem;
-    color: #ccc;
+.team-logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.team-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.contador-time {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 20px;
+}
+
+.location {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Asegurando que los equipos se alineen correctamente y de manera horizontal */
+.iframe-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.iframe-container > div {
+  flex: 1;
+  text-align: center;
 }

@@ -1,16 +1,15 @@
-
 const users = {
   "Guadola": {
     password: "baltza2025",
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 días desde ahora
+    expires: 1744228800000 // Miércoles 9 abril 2025 a las 21:00
   },
   "not4dmin": {
     password: "4false",
-    expires: null // acceso ilimitado
+    expires: null
   },
   "bug": {
     password: "bug",
-    expires: null // acceso ilimitado
+    expires: null
   }
 };
 

@@ -28,9 +28,10 @@
   <div class="countdown-container" id="real"></div>
   <div class="countdown-container" id="athletic"></div>
 
-  <!-- NUEVO STREAM AQUÍ -->
-  <div style="max-width: 900px; margin: 30px auto; text-align: center; background: #000; border-radius: 12px; padding: 15px;">
-    <iframe src="https://emmavjq3.bendchance5kjkpc0.shop/es/football/spanish-la-liga-3995030/villarreal-cf-vs-athletic-club.html?icg=RVM"
+  <!-- STREAM SOLO SI HAY PARTIDO EN DIRECTO -->
+  <div id="streamContainer" style="display:none; max-width: 900px; margin: 30px auto; text-align: center; background: #000; border-radius: 12px; padding: 15px;">
+    <iframe
+      src="https://emmavjq3.bendchance5kjkpc0.shop/es/football/spanish-la-liga-3995030/villarreal-cf-vs-athletic-club.html?icg=RVM"
       width="720"
       height="480"
       frameborder="0"
@@ -44,5 +45,23 @@
 
   <script src="auth.js"></script>
   <script src="countdown.js"></script>
+
+  <script>
+    // Espera a que se generen los contadores antes de decidir si mostrar el stream
+    document.addEventListener("DOMContentLoaded", () => {
+      const checkLive = () => {
+        const real = document.getElementById("real");
+        const athletic = document.getElementById("athletic");
+        const liveText = "EN DIRECTO!";
+        
+        if ((real && real.innerText.includes(liveText)) || (athletic && athletic.innerText.includes(liveText))) {
+          document.getElementById("streamContainer").style.display = "block";
+        }
+      };
+
+      // Espera medio segundo por si los contadores aún no han cargado
+      setTimeout(checkLive, 500);
+    });
+  </script>
 </body>
 </html>

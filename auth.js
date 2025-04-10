@@ -46,7 +46,7 @@ if (popup && welcomeMessage && subscriptionInfo) {
 
   welcomeMessage.innerHTML = `Bienvenid@ a PlayView <strong>${user}</strong>!`;
 
-  // Mensaje para usuarios PREMIUM
+  // Si el usuario es PREMIUM
   if (["Lopez73", "Irizar89", "Suli52"].includes(user)) {
     const premiumDaysLeft = Math.max(0, Math.ceil((userExpires - Date.now()) / (1000 * 60 * 60 * 24)));
     if (premiumDaysLeft > 0) {
@@ -55,16 +55,16 @@ if (popup && welcomeMessage && subscriptionInfo) {
       subscriptionInfo.innerText = "👑 Tu membresía PREMIUM ha expirado.";
     }
   }
-  // Mensaje para usuarios con acceso ilimitado (admin, not4dmin, bug)
+  // Si el usuario tiene acceso ilimitado (admin, not4dmin, bug)
   else if (userExpires === Infinity) {
     subscriptionInfo.innerText = "Tienes acceso ilimitado.";
   }
-  // Mensaje para usuarios demo
+  // Si el usuario es demo
   else if (user === "Guadola") {
     const demoDaysLeft = Math.max(0, Math.ceil((userExpires - Date.now()) / (1000 * 60 * 60 * 24)));
     subscriptionInfo.innerText = `Estás en modo demo. Te quedan ${demoDaysLeft} días de prueba.`;
   }
-  // Mensaje para usuarios normales
+  // Si el usuario es normal
   else {
     const normalDaysLeft = Math.max(0, Math.ceil((userExpires - Date.now()) / (1000 * 60 * 60 * 24)));
     if (normalDaysLeft > 0) {

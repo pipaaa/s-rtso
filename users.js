@@ -10,6 +10,18 @@ const users = {
   "bug": {
     password: "bug",
     expires: null
+  },
+  "Lopez73": {
+    password: "7383al",
+    expires: 1767225600000 // PREMIUM - Jueves 1 enero 2026 a las 00:00
+  },
+  "Irizar89": {
+    password: "7239mi",
+    expires: 1767225600000 // PREMIUM - Jueves 1 enero 2026 a las 00:00
+  },
+  "Suli52": {
+    password: "9990ms",
+    expires: 1767225600000 // PREMIUM - Jueves 1 enero 2026 a las 00:00
   }
 };
 

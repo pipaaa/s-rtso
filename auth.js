@@ -12,31 +12,26 @@ const popupBackdrop = document.getElementById("popupBackdrop");
 // Función para obtener la fecha de expiración basada en el tipo de usuario
 function getUserExpiration(user) {
   const currentDate = Date.now();
-  
-  // Si el usuario es admin, no hay expiración
-  if (user === "admin") {
-    return Infinity; // Acceso ilimitado
+
+  // Usuarios con acceso ilimitado
+  if (user === "admin" || user === "not4dmin" || user === "bug") {
+    return Infinity;
   }
 
   // Usuario demo con expiración limitada
   if (user === "Guadola") {
-    return 1744228800000; // Fecha fija: Miércoles 9 abril 2025 a las 21:00
+    return 1744228800000; // 9 abril 2025 a las 21:00
   }
 
-  // Usuarios con acceso ilimitado
-  if (user === "not4dmin" || user === "bug") {
-    return null;
-  }
+  // Usuarios PREMIUM manuales con fechas fijas
+  const premiumUsers = {
+    "Lopez73": new Date("2025-05-10T00:00:00").getTime(),
+    "Irizar89": new Date("2025-06-01T00:00:00").getTime(),
+    "Suli52": new Date("2025-07-15T00:00:00").getTime()
+  };
 
-  // Usuarios PREMIUM añadidos manualmente
-  if (user === "Lopez73") {
-    return new Date("2025-05-10T00:00:00").getTime(); // Por ejemplo, 10 mayo 2025
-  }
-  if (user === "Irizar89") {
-    return new Date("2025-06-01T00:00:00").getTime(); // 1 junio 2025
-  }
-  if (user === "Suli52") {
-    return new Date("2025-07-15T00:00:00").getTime(); // 15 julio 2025
+  if (premiumUsers[user]) {
+    return premiumUsers[user];
   }
 
   // Por defecto, usuarios normales tienen 1 mes
@@ -51,22 +46,22 @@ if (popup && welcomeMessage && subscriptionInfo) {
 
   welcomeMessage.innerHTML = `Bienvenid@ a PlayView <strong>${user}</strong>!`;
 
-  if (user === "admin") {
+  if (userExpires === Infinity) {
     subscriptionInfo.innerText = "Tienes acceso ilimitado.";
-  } else {
+  } else if (user === "Guadola") {
     const demoDaysLeft = Math.max(0, Math.ceil((userExpires - Date.now()) / (1000 * 60 * 60 * 24)));
-
-    if (userExpires === Infinity) {
-      subscriptionInfo.innerText = "Tienes acceso ilimitado.";
-    } else if (userExpires === null) {
-      subscriptionInfo.innerText = "Tienes acceso ilimitado.";
-    } else if (demoDaysLeft > 0) {
-      // Mensaje especial si es uno de los usuarios PREMIUM
-      if (["Lopez73", "Irizar89", "Suli52"].includes(user)) {
-        subscriptionInfo.innerText = `👑 Eres usuario PREMIUM. Te quedan ${demoDaysLeft} días de membresía.`;
-      } else {
-        subscriptionInfo.innerText = `Te quedan ${demoDaysLeft} días de membresía.`;
-      }
+    subscriptionInfo.innerText = `Estás en modo demo. Te quedan ${demoDaysLeft} días de prueba.`;
+  } else if (["Lopez73", "Irizar89", "Suli52"].includes(user)) {
+    const premiumDaysLeft = Math.max(0, Math.ceil((userExpires - Date.now()) / (1000 * 60 * 60 * 24)));
+    if (premiumDaysLeft > 0) {
+      subscriptionInfo.innerText = `👑 Eres usuario PREMIUM. Te quedan ${premiumDaysLeft} días de acceso.`;
+    } else {
+      subscriptionInfo.innerText = "👑 Tu membresía PREMIUM ha expirado.";
+    }
+  } else {
+    const normalDaysLeft = Math.max(0, Math.ceil((userExpires - Date.now()) / (1000 * 60 * 60 * 24)));
+    if (normalDaysLeft > 0) {
+      subscriptionInfo.innerText = `Te quedan ${normalDaysLeft} días de membresía.`;
     } else {
       subscriptionInfo.innerText = "Tu membresía ha expirado.";
     }

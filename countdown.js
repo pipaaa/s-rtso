@@ -16,7 +16,7 @@ const partidos = [
   { equipo: 'athletic', local: 'Valencia', visitante: 'Athletic', fecha: '2025-05-18' },
   { equipo: 'athletic', local: 'Athletic', visitante: 'Barcelona', fecha: '2025-05-25' },
   { equipo: 'real', local: 'Real Madrid', visitante: 'Real Sociedad', fecha: '2025-05-25' },
-  { equipo: 'athletic', local: 'Rangers', visitante: 'Athletic', fecha: '2025-04-10T20:48:00' },
+  { equipo: 'athletic', local: 'Rangers', visitante: 'Athletic', fecha: '2025-04-10T20:58:00' },
   { equipo: 'athletic', local: 'Athletic', visitante: 'Rangers', fecha: '2025-04-17T21:00:00' },
   { equipo: 'athletic', local: 'Athletic', visitante: 'X', fecha: '2025-05-01T21:00:00' },
   { equipo: 'athletic', local: 'X', visitante: 'Athletic', fecha: '2025-05-08T21:00:00' }

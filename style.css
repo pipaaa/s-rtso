@@ -357,4 +357,12 @@ footer {
   max-width: 600px;
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
 }
+.hoy-img {
+  display: block;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto 30px auto;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
 

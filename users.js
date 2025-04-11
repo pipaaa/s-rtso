@@ -15,11 +15,6 @@ const users = {
     password: "7383al",
     expires: 1767225600000 // PREMIUM - Jueves 1 enero 2026 a las 00:00
   },
-    },
-  "Lopez73": {
-    password: "7383al",
-    expires: 1767225600000 // PREMIUM - Jueves 1 enero 2026 a las 00:00
-  },
   "Imanol": {
     password: "mungi4",
     expires: 1767225600000 // PREMIUM - Jueves 1 enero 2026 a las 00:00

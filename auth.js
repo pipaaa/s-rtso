@@ -26,7 +26,7 @@ function getUserExpiration(user) {
   // Usuarios PREMIUM manuales con fechas fijas
   const premiumUsers = {
     "Lopez73": new Date("2025-05-10T00:00:00").getTime(),
-    "Irizar89": new Date("2025-06-01T00:00:00").getTime(),
+    "Imanol": new Date("2025-06-01T00:00:00").getTime(),
     "Suli52": new Date("2025-07-15T00:00:00").getTime()
   };
 

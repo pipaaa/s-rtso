@@ -55,24 +55,19 @@ if (popup && welcomeMessage && subscriptionInfo) {
       subscriptionInfo.innerText = "👑 Tu membresía PREMIUM ha expirado.";
     }
   }
-  // Si el usuario tiene acceso ilimitado (admin, not4dmin, bug)
-  else if (userExpires === Infinity) {
-    subscriptionInfo.innerText = "Tienes acceso ilimitado.";
+ // Si el usuario tiene acceso ilimitado (admin, not4dmin, bug)
+else if (userExpires === Infinity) {
+  subscriptionInfo.innerText = "Tienes acceso ilimitado.";
+}
+// Usuario normal (incluye a Guadola ahora)
+else {
+  const normalDaysLeft = Math.max(0, Math.ceil((userExpires - Date.now()) / (1000 * 60 * 60 * 24)));
+  if (normalDaysLeft > 0) {
+    subscriptionInfo.innerText = `Te quedan ${normalDaysLeft} días de membresía.`;
+  } else {
+    subscriptionInfo.innerText = "Tu membresía ha expirado.";
   }
-  // Si el usuario es demo
-  else if (user === "Guadola") {
-    const demoDaysLeft = Math.max(0, Math.ceil((userExpires - Date.now()) / (1000 * 60 * 60 * 24)));
-    subscriptionInfo.innerText = `Estás en modo demo. Te quedan ${demoDaysLeft} días de prueba.`;
-  }
-  // Si el usuario es normal
-  else {
-    const normalDaysLeft = Math.max(0, Math.ceil((userExpires - Date.now()) / (1000 * 60 * 60 * 24)));
-    if (normalDaysLeft > 0) {
-      subscriptionInfo.innerText = `Te quedan ${normalDaysLeft} días de membresía.`;
-    } else {
-      subscriptionInfo.innerText = "Tu membresía ha expirado.";
-    }
-  }
+}
 
   setTimeout(() => {
     popup.style.display = "none";

@@ -18,11 +18,6 @@ function getUserExpiration(user) {
     return Infinity;
   }
 
-  // Usuario demo con expiración limitada
-  if (user === "Guadola") {
-    return 1744228800000; // 9 abril 2025 a las 21:00
-  }
-
   // Usuarios PREMIUM manuales con fechas fijas
   const premiumUsers = {
     "Lopez73": new Date("2025-05-10T00:00:00").getTime(),

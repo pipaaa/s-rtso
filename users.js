@@ -1,7 +1,7 @@
 const users = {
   "Guadola": {
     password: "baltza2025",
-    expires: 1744228800000 // Miércoles 9 abril 2025 a las 21:00
+    expires: 1747065600000 // lunes 12 de mayo a las 00:00
   },
   "not4dmin": {
     password: "4false",

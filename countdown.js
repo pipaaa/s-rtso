@@ -1,7 +1,7 @@
 const partidos = [
   { equipo: 'real', local: 'Las Palmas', visitante: 'Real Sociedad', fecha: '2025-04-06T14:00:00' },
   { equipo: 'athletic', local: 'Villarreal', visitante: 'Athletic', fecha: '2025-04-06T21:00:00' },
-  { equipo: 'real', local: 'Real Sociedad', visitante: 'Mallorca', fecha: '2025-04-12T14:00:00' },
+  { equipo: 'real', local: 'Real Sociedad', visitante: 'Mallorca', fecha: '2025-04-12T13:48:00' },
   { equipo: 'athletic', local: 'Athletic', visitante: 'Rayo Vallecano', fecha: '2025-04-13T21:00:00' },
   { equipo: 'real', local: 'Villarreal', visitante: 'Real Sociedad', fecha: '2025-04-20T16:15:00' },
   { equipo: 'athletic', local: 'Real Madrid', visitante: 'Athletic', fecha: '2025-04-20T21:00:00' },

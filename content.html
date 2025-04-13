@@ -12,59 +12,82 @@
   <!-- Fondo difuminado -->
   <div id="popupBackdrop" class="blurred"></div>
 
+  <!-- Botones de cabecera -->
   <div class="header-buttons">
-    <button onclick="logout()" style="font-size: 10px; padding: 5px 8px;">Cerrar Sesión</button>
-    <button onclick="window.location.href='subscription.html'" style="font-size: 10px; padding: 5px 8px;">Mi Suscripción</button>
+    <span id="welcomeText" class="welcome-text"></span>
+    <button onclick="logout()" class="top-button">Cerrar Sesión</button>
+    <button onclick="window.location.href='subscription.html'" class="top-button">Mi Suscripción</button>
   </div>
 
+  <!-- Popup de bienvenida -->
   <div class="popup" id="popup">
     <span class="close" onclick="closePopup()">×</span>
     <div id="welcomeMessage"></div>
     <div id="subscriptionInfo"></div>
   </div>
 
+  <!-- Título -->
   <h2 class="title">En directo!</h2>
-  <div class="hoy-alert">
-  🚨 <strong>HOY!</strong> Partidazo del athletic!
-</div>
 
+  <!-- Alerta de partido hoy -->
+  <div class="hoy-alert">
+    🚨 <strong>HOY!</strong> Partidazo del athletic!
+  </div>
+
+  <!-- Contadores -->
   <div class="countdown-container" id="real"></div>
   <div class="countdown-container" id="athletic"></div>
 
-  <!-- STREAM SOLO SI HAY PARTIDO EN DIRECTO -->
- <div id="streamContainer" style="display:none; max-width: 900px; margin: 30px auto; text-align: center; background: #000; border-radius: 12px; padding: 15px;">
+  <!-- Stream solo si hay partido -->
+  <div id="streamContainer" style="display:none; max-width: 900px; margin: 30px auto; text-align: center; background: rgba(0, 0, 0, 0.85); border-radius: 16px; padding: 20px; box-shadow: 0 0 15px rgba(0,0,0,0.5);">
     <iframe
       src="https://nia0wo3.heavyshownh8ynhx.shop/es/football/spanish-la-liga-3995029/athletic-club-vs-rayo-vallecano.html?icg=RVM"
       width="720"
       height="480"
       frameborder="0"
       allowfullscreen
-      style="border-radius: 10px;"></iframe>
+      style="border-radius: 12px;"></iframe>
   </div>
 
+  <!-- Advertencia -->
   <div class="private-warning">
-    <p>Este contenido es privado. No se puede difundir sin autorización.</p>
+    <p>🔒 Este contenido es privado. No se puede difundir sin autorización.</p>
   </div>
 
+  <!-- Scripts -->
   <script src="auth.js"></script>
   <script src="countdown.js"></script>
-
   <script>
-    // Espera a que se generen los contadores antes de decidir si mostrar el stream
+    // Mostrar stream si hay partido en directo
     document.addEventListener("DOMContentLoaded", () => {
       const checkLive = () => {
         const real = document.getElementById("real");
         const athletic = document.getElementById("athletic");
         const liveText = "EN DIRECTO!";
-        
         if ((real && real.innerText.includes(liveText)) || (athletic && athletic.innerText.includes(liveText))) {
           document.getElementById("streamContainer").style.display = "block";
         }
       };
-
-      // Espera medio segundo por si los contadores aún no han cargado
       setTimeout(checkLive, 500);
     });
+
+    // Mostrar popup con bienvenida
+    window.onload = () => {
+      const popup = document.getElementById('popup');
+      const backdrop = document.getElementById('popupBackdrop');
+      popup.classList.add('show');
+      backdrop.classList.add('show');
+
+      setTimeout(() => {
+        popup.classList.remove('show');
+        backdrop.classList.remove('show');
+      }, 4000);
+    };
+
+    function closePopup() {
+      document.getElementById('popup').classList.remove('show');
+      document.getElementById('popupBackdrop').classList.remove('show');
+    }
   </script>
 </body>
 </html>

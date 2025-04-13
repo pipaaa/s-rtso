@@ -12,91 +12,59 @@
   <!-- Fondo difuminado -->
   <div id="popupBackdrop" class="blurred"></div>
 
-  <!-- Botones de cabecera -->
   <div class="header-buttons">
-    <span id="welcomeText" class="welcome-text"></span>
-    <button onclick="logout()" class="top-button">Cerrar Sesión</button>
-    <button onclick="window.location.href='subscription.html'" class="top-button">Mi Suscripción</button>
+    <button onclick="logout()" style="font-size: 10px; padding: 5px 8px;">Cerrar Sesión</button>
+    <button onclick="window.location.href='subscription.html'" style="font-size: 10px; padding: 5px 8px;">Mi Suscripción</button>
   </div>
 
-  <!-- Popup de bienvenida -->
   <div class="popup" id="popup">
     <span class="close" onclick="closePopup()">×</span>
     <div id="welcomeMessage"></div>
     <div id="subscriptionInfo"></div>
   </div>
 
-  <!-- Título -->
   <h2 class="title">En directo!</h2>
-
-  <!-- Alerta de partido hoy -->
   <div class="hoy-alert">
-    🚨 <strong>HOY!</strong> Partidazo del athletic!
-  </div>
+  🚨 <strong>ESTA NOCHE!</strong>El Athletic se enfrentarà al conjunto de Vallecano en San Mames!
+</div>
 
-  <!-- Contadores -->
   <div class="countdown-container" id="real"></div>
   <div class="countdown-container" id="athletic"></div>
 
-  <!-- Stream solo si hay partido -->
-  <div id="streamContainer" style="display:none; max-width: 900px; margin: 30px auto; text-align: center; background: rgba(0, 0, 0, 0.85); border-radius: 16px; padding: 20px; box-shadow: 0 0 15px rgba(0,0,0,0.5);">
+  <!-- STREAM SOLO SI HAY PARTIDO EN DIRECTO -->
+  <div id="streamContainer" style="display:none; max-width: 900px; margin: 30px auto; text-align: center; background: #000; border-radius: 12px; padding: 15px;">
     <iframe
-      src="https://nia0wo3.heavyshownh8ynhx.shop/es/football/spanish-la-liga-3995029/athletic-club-vs-rayo-vallecano.html?icg=RVM"
+      src="https://lolacdw3.existinstanttl22lh.sbs/es/football/spanish-la-liga-3995029/athletic-club-vs-rayo-vallecano.html?icg=RVM"
       width="720"
       height="480"
       frameborder="0"
       allowfullscreen
-      style="border-radius: 12px;"></iframe>
+      style="border-radius: 10px;"></iframe>
   </div>
 
-  <!-- Advertencia -->
   <div class="private-warning">
-    <p>🔒 Este contenido es privado. No se puede difundir sin autorización.</p>
+    <p>Este contenido es privado. No se puede difundir sin autorización.</p>
   </div>
 
-  <!-- Scripts -->
   <script src="auth.js"></script>
   <script src="countdown.js"></script>
+
   <script>
-    // Mostrar stream si hay partido en directo
+    // Espera a que se generen los contadores antes de decidir si mostrar el stream
     document.addEventListener("DOMContentLoaded", () => {
       const checkLive = () => {
         const real = document.getElementById("real");
         const athletic = document.getElementById("athletic");
         const liveText = "EN DIRECTO!";
+        
         if ((real && real.innerText.includes(liveText)) || (athletic && athletic.innerText.includes(liveText))) {
           document.getElementById("streamContainer").style.display = "block";
         }
       };
+
+      // Espera medio segundo por si los contadores aún no han cargado
       setTimeout(checkLive, 500);
     });
-
-    let popupTimeout;
-
-    // Mostrar popup con bienvenida
-    window.onload = () => {
-      const popup = document.getElementById('popup');
-      const backdrop = document.getElementById('popupBackdrop');
-      popup.classList.add('show');
-      backdrop.classList.add('show');
-
-      popupTimeout = setTimeout(() => {
-        closePopup();
-      }, 4000);
-    };
-
-    function closePopup() {
-      const popup = document.getElementById('popup');
-      const backdrop = document.getElementById('popupBackdrop');
-      popup.classList.remove('show');
-      backdrop.classList.remove('show');
-
-      // Evitar que el cierre automático se ejecute si ya se cerró manualmente
-      if (popupTimeout) {
-        clearTimeout(popupTimeout);
-        popupTimeout = null;
-      }
-    }
   </script>
 </body>
 </html>

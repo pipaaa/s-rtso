@@ -71,6 +71,8 @@
       setTimeout(checkLive, 500);
     });
 
+    let popupTimeout;
+
     // Mostrar popup con bienvenida
     window.onload = () => {
       const popup = document.getElementById('popup');
@@ -78,15 +80,22 @@
       popup.classList.add('show');
       backdrop.classList.add('show');
 
-      setTimeout(() => {
-        popup.classList.remove('show');
-        backdrop.classList.remove('show');
+      popupTimeout = setTimeout(() => {
+        closePopup();
       }, 4000);
     };
 
     function closePopup() {
-      document.getElementById('popup').classList.remove('show');
-      document.getElementById('popupBackdrop').classList.remove('show');
+      const popup = document.getElementById('popup');
+      const backdrop = document.getElementById('popupBackdrop');
+      popup.classList.remove('show');
+      backdrop.classList.remove('show');
+
+      // Evitar que el cierre automático se ejecute si ya se cerró manualmente
+      if (popupTimeout) {
+        clearTimeout(popupTimeout);
+        popupTimeout = null;
+      }
     }
   </script>
 </body>
